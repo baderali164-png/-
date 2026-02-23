@@ -39,10 +39,7 @@ html, body {
 #lobby::before {
   content: '';
   position: absolute; inset: 0;
-  background-image: url('./jalsa.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.12;
+  opacity: 0;
   pointer-events: none;
   z-index: 0;
 }
@@ -60,13 +57,7 @@ html, body {
   z-index: 2;
 }
 
-.lobby-wrap {
-  text-align: center;
-  width: 100%; max-width: 460px;
-  padding: 2rem;
-  position: relative;
-  z-index: 2;
-}
+
 
 .logo-title {
   font-size: 3.5rem; font-weight: 900;
@@ -331,7 +322,7 @@ input[type=text]::placeholder { color: rgba(255,255,255,0.3); }
   transform: translate(-50%, -50%);
   width: 340px;
   height: 250px;
-  background-image: url('./jalsa.jpg');
+  background-image: none;
   background-size: cover;
   background-position: center;
   border-radius: 22px;
@@ -564,7 +555,7 @@ input[type=text]::placeholder { color: rgba(255,255,255,0.3); }
 <!-- LOBBY -->
 <div id="lobby">
   <div class="lobby-wrap">
-    <div class="logo-title">خاص لعيال القاعدة</div>
+    <div class="logo-title">سبعة الديمن</div>
     <div class="logo-suits">
       <span>♠</span>
       <span style="color:#ff4444">♥</span>
@@ -573,14 +564,14 @@ input[type=text]::placeholder { color: rgba(255,255,255,0.3); }
     </div>
     <div class="panel">
       <div id="err"></div>
-      <div class="field-label">اسمك </div>
+      <div class="field-label">اسمك في اللعبة</div>
       <input type="text" id="pname" placeholder="اكتب اسمك..." maxlength="16">
-      <button class="btn-gold" onclick="createRoom()">🏠 إنشاء صكة جديدة</button>
-      <div class="divider">أو ادخل مع النشامى </div>
+      <button class="btn-gold" onclick="createRoom()">🏠 إنشاء غرفة جديدة</button>
+      <div class="divider">أو انضم لغرفة</div>
       <div class="field-label">كود الغرفة</div>
       <input type="text" id="rcode" placeholder="مثال: AB12CD" maxlength="6"
         style="text-align:center;letter-spacing:0.4em;font-size:1.4rem;text-transform:uppercase">
-      <button class="btn-outline" onclick="joinRoom()">🔑 ادخل للغرفة</button>
+      <button class="btn-outline" onclick="joinRoom()">🔑 انضم للغرفة</button>
     </div>
   </div>
 </div>
@@ -593,11 +584,11 @@ input[type=text]::placeholder { color: rgba(255,255,255,0.3); }
     <button class="copy-link" onclick="copyCode()">📋 انسخ الكود</button>
   </div>
   <div class="waiting-players">
-    <div style="color:var(--gold);font-weight:700;margin-bottom:1rem">🎮 النشامى</div>
+    <div style="color:var(--gold);font-weight:700;margin-bottom:1rem">🎮 اللاعبون</div>
     <div id="wplayers"></div>
   </div>
   <button class="btn-start" id="startbtn" onclick="startGame()">🃏 ابدأ اللعبة</button>
-  <div id="wmsg" style="color:rgba(255,255,255,0.4);font-size:0.85rem;margin-top:0.75rem">في انتظار المعزب...</div>
+  <div id="wmsg" style="color:rgba(255,255,255,0.4);font-size:0.85rem;margin-top:0.75rem">في انتظار المضيف...</div>
 </div>
 
 <!-- GAME -->
@@ -634,8 +625,8 @@ input[type=text]::placeholder { color: rgba(255,255,255,0.3); }
     <div class="go-emoji">😂</div>
     <div class="go-title">انتهت الجلسة!</div>
     <div class="go-loser" id="goloser"></div>
-    <div class="go-sub">نكر ولا بتزبن؟</div>
-    <button class="btn-restart" id="gobtn" onclick="sendRestart()" style="display:none">🔄 صكة جديدة</button>
+    <div class="go-sub">من يريد جولة أخرى؟</div>
+    <button class="btn-restart" id="gobtn" onclick="sendRestart()" style="display:none">🔄 جولة جديدة</button>
     <button class="btn-home" onclick="location.reload()">🏠 الرئيسية</button>
   </div>
 </div>
@@ -656,14 +647,14 @@ function connect(cb) {
 
 function createRoom() {
   myName = document.getElementById('pname').value.trim();
-  if (!myName) { showErr('أدخل اسمك'); return; }
+  if (!myName) { showErr('أدخل اسمك أولاً'); return; }
   connect(() => ws.send(JSON.stringify({type:'create_room',name:myName})));
 }
 function joinRoom() {
   myName = document.getElementById('pname').value.trim();
   const code = document.getElementById('rcode').value.trim().toUpperCase();
-  if (!myName) { showErr('أدخل اسمك'); return; }
-  if (!code) { showErr('دخل كود الغرفة'); return; }
+  if (!myName) { showErr('أدخل اسمك أولاً'); return; }
+  if (!code) { showErr('أدخل كود الغرفة'); return; }
   connect(() => ws.send(JSON.stringify({type:'join_room',roomId:code,name:myName})));
 }
 function startGame() { ws.send(JSON.stringify({type:'start_game'})); }
@@ -695,7 +686,7 @@ function handle(msg) {
     document.getElementById('waiting').style.display = 'flex';
     document.getElementById('wcode').textContent = myRoomId;
     document.getElementById('startbtn').style.display = 'block';
-    document.getElementById('wmsg').textContent = 'شارك الكود مع الشباب';
+    document.getElementById('wmsg').textContent = 'شارك الكود مع أصحابك';
   }
   else if (msg.type === 'joined_room') {
     myId = msg.playerId; myRoomId = msg.roomId;
@@ -804,7 +795,7 @@ function renderGame(s) {
   const tb = document.getElementById('turnbar');
   if (cur) {
     if (cur.id === myId) {
-      tb.innerHTML = '⭐ دورك أنت العب ولا مش الدور';
+      tb.innerHTML = '⭐ دورك أنت! العب ورقة أو مرّر';
       tb.style.color = '#f0c040';
     } else {
       tb.innerHTML = `⏳ دور ${cur.name}...`;
