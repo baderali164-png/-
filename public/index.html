@@ -693,7 +693,7 @@ function renderGame(s){
 
   // Game over
   if(s.gameOver){
-    document.getElementById('goloser').textContent='الخاسر: '+s.loser+' 😭';
+    document.getElementById('goloser').textContent='الخاسر: '+s.loser;
     document.getElementById('gameover').style.display='flex';
     if(isHost)document.getElementById('gobtn').style.display='block';
   }
