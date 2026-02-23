@@ -196,32 +196,49 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
   flex-shrink:0;
 }
 
-/* البورد - أرقام الكبب */
+/* البورد - أوراق حقيقية في الوسط */
 .board-center{
   position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
+  transform:translate(-50%,-58%);
   z-index:5;
   display:grid;
   grid-template-columns:1fr 1fr;
   grid-template-rows:1fr 1fr;
-  gap:6px;
-  width:200px;height:150px;
+  gap:10px;
+  width:220px;
 }
 .suit-pile{
-  background:rgba(0,0,0,.3);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:8px;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  padding:4px;
+  gap:4px;cursor:pointer;
 }
-.suit-sym{font-size:1.1rem;font-weight:900;line-height:1}
-.suit-sym.r{color:#ff4444}
-.suit-range{font-size:.6rem;color:rgba(255,255,255,.5);margin-top:2px}
-.suit-count{
-  font-size:.65rem;color:rgba(255,255,255,.4);
-  background:rgba(0,0,0,.3);border-radius:4px;
-  padding:1px 4px;margin-top:2px;
+/* الورقة الوسط - تعرض آخر ورقة مرمية */
+.board-card{
+  width:52px;height:74px;
+  background:linear-gradient(145deg,#fffff8,#f0f0e0);
+  border-radius:7px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:4px 5px;
+  box-shadow:0 4px 14px rgba(0,0,0,.6);
+  position:relative;
+  color:#1a1a1a;
+  font-weight:900;
+}
+.board-card.r{color:#cc0000}
+.board-card.seven{
+  box-shadow:0 0 0 2px #f0c040, 0 4px 14px rgba(0,0,0,.6), 0 0 20px rgba(240,192,64,.3);
+}
+.board-card.empty{
+  background:rgba(0,0,0,.25);
+  border:2px dashed rgba(255,255,255,.15);
+  box-shadow:none;
+}
+.board-card .bc-corner{font-size:.72rem;font-weight:900;line-height:1.1}
+.board-card .bc-center{font-size:1.5rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.board-card .bc-range{
+  position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);
+  font-size:.55rem;color:rgba(255,255,255,.5);white-space:nowrap;
+  background:rgba(0,0,0,.4);border-radius:4px;padding:1px 4px;
 }
 
 /* أوراقي في الأسفل */
@@ -230,31 +247,33 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
   width:100%;
 }
 .my-hand-cards{
-  display:flex;gap:2px;overflow-x:auto;
-  padding:4px 8px;max-width:100vw;
+  display:flex;gap:3px;overflow-x:auto;
+  padding:6px 10px 8px;max-width:100vw;
+  scrollbar-width:none;
 }
+.my-hand-cards::-webkit-scrollbar{display:none}
 .hc{
   flex-shrink:0;
-  width:52px;height:74px;
-  background:linear-gradient(145deg,#fffff0,#f5f5dc);
-  border-radius:6px;
+  width:68px;height:98px;
+  background:linear-gradient(145deg,#fffff8,#f0f0e0);
+  border-radius:8px;
   display:flex;flex-direction:column;justify-content:space-between;
-  padding:3px;
-  box-shadow:0 3px 8px rgba(0,0,0,.5);
+  padding:4px 5px;
+  box-shadow:0 4px 12px rgba(0,0,0,.55);
   cursor:not-allowed;
   transition:.15s;
   color:#1a1a1a;
+  position:relative;
 }
 .hc.r{color:#cc0000}
 .hc.ok{
   cursor:pointer;
-  box-shadow:0 0 0 2px #f0c040, 0 -8px 0 0 rgba(240,192,64,.3), 0 6px 16px rgba(0,0,0,.5);
-  transform:translateY(-10px);
+  box-shadow:0 0 0 2.5px #f0c040, 0 6px 20px rgba(0,0,0,.5);
+  transform:translateY(-12px);
 }
-.hc.ok:hover{transform:translateY(-14px);}
-.hc .cor{font-size:.6rem;font-weight:700;line-height:1.1}
-.hc .ctr{font-size:1.3rem;text-align:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-.hc{position:relative}
+.hc.ok:hover{transform:translateY(-18px);}
+.hc .cor{font-size:.75rem;font-weight:900;line-height:1.1}
+.hc .ctr{font-size:1.6rem;text-align:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
 
 /* شريط المعلومات العلوي */
 .top-bar{
@@ -402,28 +421,12 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
   <!-- السجادة -->
   <div class="carpet"></div>
 
-  <!-- البورد في وسط السجادة (يضغط لإظهار الكبب) -->
-  <div class="board-center" id="board-center" onclick="showBoardPopup()" style="cursor:pointer">
-    <div class="suit-pile" id="pile-s">
-      <div class="suit-sym">♠</div>
-      <div class="suit-range" id="range-s">—</div>
-      <div class="suit-count" id="count-s">0/13</div>
-    </div>
-    <div class="suit-pile" id="pile-h">
-      <div class="suit-sym r">♥</div>
-      <div class="suit-range" id="range-h">—</div>
-      <div class="suit-count" id="count-h">0/13</div>
-    </div>
-    <div class="suit-pile" id="pile-d">
-      <div class="suit-sym r">♦</div>
-      <div class="suit-range" id="range-d">—</div>
-      <div class="suit-count" id="count-d">0/13</div>
-    </div>
-    <div class="suit-pile" id="pile-c">
-      <div class="suit-sym">♣</div>
-      <div class="suit-range" id="range-c">—</div>
-      <div class="suit-count" id="count-c">0/13</div>
-    </div>
+  <!-- البورد في وسط السجادة - أوراق حقيقية -->
+  <div class="board-center" id="board-center">
+    <div class="suit-pile" id="pile-s"></div>
+    <div class="suit-pile" id="pile-h"></div>
+    <div class="suit-pile" id="pile-d"></div>
+    <div class="suit-pile" id="pile-c"></div>
   </div>
 
   <!-- لاعب 1 - فوق -->
@@ -627,12 +630,30 @@ function renderGame(s){
   renderPlayerSlot('right',pos.right,COLORS,s.players);
   renderPlayerSlot('left',pos.left,COLORS,s.players);
 
-  // البورد المختصر
-  const suits={'♠':{r:'range-s',c:'count-s'},'♥':{r:'range-h',c:'count-h'},'♦':{r:'range-d',c:'count-d'},'♣':{r:'range-c',c:'count-c'}};
-  Object.entries(suits).forEach(([suit,ids])=>{
+  // البورد - أوراق حقيقية
+  const suitIds={'♠':'pile-s','♥':'pile-h','♦':'pile-d','♣':'pile-c'};
+  ['♠','♥','♦','♣'].forEach(suit=>{
     const b=s.board[suit];
-    document.getElementById(ids.r).textContent=b?vd(b.low)+'—'+vd(b.high):'—';
-    document.getElementById(ids.c).textContent=b?(b.high-b.low+1)+'/13':'0/13';
+    const isR=RED[suit];
+    const pile=document.getElementById(suitIds[suit]);
+    if(!b){
+      // ورقة فارغة
+      pile.innerHTML=`<div class="board-card empty">
+        <div class="bc-corner" style="color:rgba(255,255,255,.2)">${suit}</div>
+        <div class="bc-center" style="color:rgba(255,255,255,.1)">${suit}</div>
+        <div class="bc-corner" style="transform:rotate(180deg);color:rgba(255,255,255,.2)">${suit}</div>
+      </div>`;
+    } else {
+      // آخر ورقة مرمية (أعلى أو أسفل الكبة)
+      const topVal=b.high;
+      const isSeven=b.high===7&&b.low===7;
+      pile.innerHTML=`<div class="board-card${isR?' r':''}${isSeven?' seven':''}">
+        <div class="bc-corner"><div>${vd(topVal)}</div><div>${suit}</div></div>
+        <div class="bc-center">${suit}</div>
+        <div class="bc-corner" style="transform:rotate(180deg)"><div>${vd(topVal)}</div><div>${suit}</div></div>
+        <div class="bc-range">${vd(b.low)}—${vd(b.high)}</div>
+      </div>`;
+    }
   });
 
   // Turn banner
