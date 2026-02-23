@@ -381,18 +381,18 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
 <!-- LOBBY -->
 <div id="lobby">
   <div class="lobby-inner">
-    <div class="game-title">سبعة الديمن</div>
+    <div class="game-title">القاعده سجن</div>
     <div class="suits-row">♠ <span class="r">♥</span> <span class="r">♦</span> ♣</div>
     <div class="card-panel">
       <div id="err"></div>
-      <div class="flabel">اسمك في اللعبة</div>
+      <div class="flabel">سجل اسمك هنا</div>
       <input id="pname" type="text" placeholder="اكتب اسمك..." maxlength="16">
-      <button class="btn-gold" onclick="createRoom()">🏠 إنشاء غرفة جديدة</button>
-      <div class="divider">أو انضم لغرفة موجودة</div>
+      <button class="btn-gold" onclick="createRoom()">🏠 إنشاء صكه جديدة</button>
+      <div class="divider">ادخل مع النشامى اذا ودك</div>
       <div class="flabel">كود الغرفة</div>
       <input id="rcode" type="text" placeholder="مثال: AB12CD" maxlength="6"
         style="text-align:center;letter-spacing:.4em;font-size:1.3rem;text-transform:uppercase">
-      <button class="btn-outline" onclick="joinRoom()">🔑 انضم للغرفة</button>
+      <button class="btn-outline" onclick="joinRoom()">🔑 ادخل يالامير</button>
     </div>
   </div>
 </div>
@@ -403,11 +403,11 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
   <div class="big-code" id="wcode">------</div>
   <button class="copy-btn" onclick="copyCode()">📋 انسخ الكود</button>
   <div class="wplayers-box">
-    <div style="color:#f0c040;font-weight:700;margin-bottom:.8rem">🎮 اللاعبون</div>
+    <div style="color:#f0c040;font-weight:700;margin-bottom:.8rem">🎮 النشامى</div>
     <div id="wplayers"></div>
   </div>
   <button class="btn-start" id="startbtn" onclick="startGame()" style="display:none">🃏 ابدأ اللعبة</button>
-  <div class="wait-msg" id="wmsg">في انتظار المضيف...</div>
+  <div class="wait-msg" id="wmsg">في انتظار المعزب...</div>
 </div>
 
 <!-- GAME -->
@@ -484,10 +484,10 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
 <div id="gameover">
   <div class="go-box">
     <div class="go-emoji">😂</div>
-    <div class="go-title">انتهت الجلسة!</div>
+    <div class="go-title">قم يا غشيم!</div>
     <div class="go-loser" id="goloser"></div>
-    <div class="go-sub">من يريد جولة أخرى؟</div>
-    <button class="btn-restart" id="gobtn" onclick="sendRestart()" style="display:none">🔄 جولة جديدة</button>
+    <div class="go-sub">تبي تندق مره ثانية؟</div>
+    <button class="btn-restart" id="gobtn" onclick="sendRestart()" style="display:none">🔄كر ما يضر</button>
     <button class="btn-home" onclick="location.reload()">🏠 الرئيسية</button>
   </div>
 </div>
