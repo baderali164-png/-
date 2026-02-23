@@ -23,9 +23,10 @@ const wss = new WebSocketServer({ server });
 const rooms = {};
 
 function createDeck() {
-  const suits = ['♠', '♥', '♦', '♣'];
+  const suits = ['\u2660', '\u2665', '\u2666', '\u2663'];
   const deck = [];
-  for (let s of suits) for (let v = 1; v <= 13; v++) deck.push({ suit: s, value: v });
+  // فقط 7-8-9-10-J-Q-K-A (7 إلى 14، حيث A=14)
+  for (let s of suits) for (let v = 7; v <= 14; v++) deck.push({ suit: s, value: v });
   // shuffle
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -52,10 +53,10 @@ function getValidMoves(hand, board) {
   for (const card of hand) {
     const b = board[card.suit];
     if (card.value === 7) {
-      if (!b) moves.push(card); // can always place 7 if suit not started
+      if (!b) moves.push(card); // يجب وضع 7 أولاً
     } else if (b) {
-      if (card.value === b.low - 1) moves.push(card);
-      if (card.value === b.high + 1) moves.push(card);
+      // فقط لأعلى: 8-9-10-J-Q-K-A (max=14)
+      if (card.value === b.high + 1 && b.high < 14) moves.push(card);
     }
   }
   return moves;
@@ -196,12 +197,11 @@ wss.on('connection', (ws) => {
       // Remove card from hand
       player.hand = player.hand.filter(c => !(c.suit === card.suit && c.value === card.value));
       
-      // Update board
+      // Update board - فقط لأعلى
       if (card.value === 7) {
         room.board[card.suit] = { low: 7, high: 7 };
       } else {
         const b = room.board[card.suit];
-        if (card.value === b.low - 1) b.low = card.value;
         if (card.value === b.high + 1) b.high = card.value;
       }
 
