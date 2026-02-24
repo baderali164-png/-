@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سبعة الديمن 🃏</title>
+<title>سبعة الديمن 🃏 - نسخة النشامى الفخمة</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -77,189 +77,148 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
 .btn-start:hover{filter:brightness(1.1);transform:translateY(-1px)}
 .wait-msg{color:rgba(255,255,255,.35);font-size:.85rem;margin-top:.5rem}
 
-/* ===== GAME TABLE - BEIGE STYLE WITH GREEN ===== */
+/* ===== GAME TABLE - REVISED SIZES & POSITION ===== */
 #game{
   display:none;
   width:100vw;height:100vh;
   position:relative;
   overflow:hidden;
-  /* بيج خضراء */
   background: #2a5c38;
 }
 
-/* خطوط الطاولة */
 #game::before{
   content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 70% 60% at 50% 50%, #3a7a4a 0%, #2a5c38 60%, #1e4428 100%);
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, #3a7a4a 0%, #2a5c38 60%, #1e4428 100%);
   pointer-events:none;
 }
 
-/* السجادة في الوسط */
+/* تكبير السجادة */
 .carpet{
   position:absolute;
   top:50%;left:50%;
   transform:translate(-50%,-50%);
-  width:340px;height:240px;
-  border-radius:16px;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(180,120,40,.15) 0px,
-      rgba(180,120,40,.15) 2px,
-      transparent 2px,
-      transparent 12px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(180,120,40,.1) 0px,
-      rgba(180,120,40,.1) 2px,
-      transparent 2px,
-      transparent 12px
-    ),
+  width:600px; /* زيادة العرض */
+  height:450px; /* زيادة الطول */
+  border-radius:24px;
+  background: 
+    repeating-linear-gradient(45deg, rgba(180,120,40,.15) 0px, rgba(180,120,40,.15) 2px, transparent 2px, transparent 12px),
+    repeating-linear-gradient(-45deg, rgba(180,120,40,.1) 0px, rgba(180,120,40,.1) 2px, transparent 2px, transparent 12px),
     linear-gradient(135deg, #3d7a52, #2d6040, #3d7a52);
-  border:3px solid rgba(240,192,64,.4);
-  box-shadow:0 0 40px rgba(0,0,0,.4), inset 0 0 30px rgba(0,0,0,.2);
+  border:5px solid rgba(240,192,64,.6);
+  box-shadow:0 0 80px rgba(0,0,0,.6), inset 0 0 40px rgba(0,0,0,.3);
   z-index:1;
 }
 
-/* شريط الاطار الذهبي للسجادة */
 .carpet::before{
-  content:'';position:absolute;inset:6px;
+  content:'';position:absolute;inset:12px;
   border:2px solid rgba(240,192,64,.25);
-  border-radius:10px;pointer-events:none;
+  border-radius:16px;pointer-events:none;
 }
 
-/* لاعب فوق (1) */
-.player-top{
-  position:absolute;top:0;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;
-  padding-top:8px;z-index:10;
-}
-/* لاعب يمين (2) */
-.player-right{
-  position:absolute;right:0;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;align-items:center;
-  padding-right:8px;z-index:10;
-}
-/* لاعب تحت (3) - أنا */
-.player-bottom{
-  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;
-  padding-bottom:4px;z-index:10;width:100%;
-}
-/* لاعب يسار (4) */
-.player-left{
-  position:absolute;left:0;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;align-items:center;
-  padding-left:8px;z-index:10;
-}
+/* توزيع اللاعبين */
+.player-top{ position:absolute;top:15px;left:50%;transform:translateX(-50%); display:flex;flex-direction:column;align-items:center;z-index:10; }
+.player-right{ position:absolute;right:15px;top:50%;transform:translateY(-50%); display:flex;flex-direction:column;align-items:center;z-index:10; }
+.player-bottom{ position:absolute;bottom:0;left:50%;transform:translateX(-50%); display:flex;flex-direction:column;align-items:center;padding-bottom:15px;z-index:10;width:100%; }
+.player-left{ position:absolute;left:15px;top:50%;transform:translateY(-50%); display:flex;flex-direction:column;align-items:center;z-index:10; }
 
-/* أوراق اللاعبين المخفية */
-.opp-hand{display:flex;gap:-4px;justify-content:center;}
+/* تكبير أوراق الخصوم المقلوبة */
+.opp-hand{display:flex;justify-content:center;}
 .opp-card-back{
-  width:32px;height:46px;
+  width:60px; /* زيادة */
+  height:90px; /* زيادة */
   background:linear-gradient(145deg,#1a4a2a,#0d2b18);
-  border:1px solid rgba(240,192,64,.3);
-  border-radius:5px;
-  box-shadow:1px 1px 4px rgba(0,0,0,.4);
-  margin:-6px;
-}
-/* أوراق أفقية للاعبين جانبيين */
-.opp-hand.vertical .opp-card-back{
-  width:46px;height:32px;
-  margin:-10px 0;
-}
-
-/* معلومات اللاعب */
-.player-info{
-  background:rgba(0,0,0,.5);
-  border:1px solid rgba(240,192,64,.25);
+  border:2px solid rgba(240,192,64,.4);
   border-radius:10px;
-  padding:4px 10px;
-  display:flex;align-items:center;gap:6px;
-  font-size:.75rem;font-weight:700;
-  white-space:nowrap;
-  margin:4px 0;
+  box-shadow:3px 3px 8px rgba(0,0,0,.5);
+  margin:-18px; /* تداخل أكبر */
 }
-.player-info.my-turn{
-  border-color:#f0c040;
-  box-shadow:0 0 12px rgba(240,192,64,.4);
-  color:#f0c040;
-}
-.player-info.out{opacity:.4}
-.p-av{
-  width:28px;height:28px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.8rem;font-weight:900;
-  background:linear-gradient(135deg,#2d6a3f,#48bb78);
-  flex-shrink:0;
+.opp-hand.vertical .opp-card-back{
+  width:90px;height:60px;
+  margin:-14px 0;
 }
 
-/* البورد - أوراق حقيقية في الوسط */
+/* تكبير معلومات اللاعب */
+.player-info{
+  background:rgba(0,0,0,0.7);
+  border:2px solid rgba(240,192,64,.3);
+  border-radius:18px;
+  padding:10px 20px;
+  display:flex;align-items:center;gap:12px;
+  font-size:1.2rem;font-weight:700;
+  margin:12px 0;
+}
+.player-info.my-turn{ border-color:#f0c040; box-shadow:0 0 25px rgba(240,192,64,0.6); color:#f0c040; }
+.p-av{
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;font-weight:900;
+  background:linear-gradient(135deg,#2d6a3f,#48bb78);
+}
+
+/* تكبير بورد الوسط */
 .board-center{
   position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-58%);
+  transform:translate(-50%,-55%);
   z-index:5;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr 1fr;
-  gap:10px;
-  width:220px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:35px;
+  width:auto;
 }
-.suit-pile{
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  gap:4px;cursor:pointer;
-}
-/* الورقة الوسط - تعرض آخر ورقة مرمية */
+
+/* تصميم البطاقات */
 .board-card{
-  width:52px;height:74px;
+  width:100px;height:140px; /* زيادة الحجم */
   background:linear-gradient(145deg,#fffff8,#f0f0e0);
-  border-radius:7px;
+  border-radius:12px;
   display:flex;flex-direction:column;justify-content:space-between;
-  padding:4px 5px;
-  box-shadow:0 4px 14px rgba(0,0,0,.6);
+  padding:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,.7);
   position:relative;
   color:#1a1a1a;
   font-weight:900;
+  transition: transform 0.3s ease-in-out;
 }
 .board-card.r{color:#cc0000}
-.board-card.seven{
-  box-shadow:0 0 0 2px #f0c040, 0 4px 14px rgba(0,0,0,.6), 0 0 20px rgba(240,192,64,.3);
-}
-.board-card.empty{
-  background:rgba(0,0,0,.25);
-  border:2px dashed rgba(255,255,255,.15);
-  box-shadow:none;
-}
-.board-card .bc-corner{font-size:.72rem;font-weight:900;line-height:1.1}
-.board-card .bc-center{font-size:1.5rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.board-card.seven{ box-shadow:0 0 0 4px #f0c040, 0 10px 25px rgba(0,0,0,.7), 0 0 35px rgba(240,192,64,0.5); }
+.board-card.empty{ background:rgba(0,0,0,.25); border:3px dashed rgba(255,255,255,.15); box-shadow:none; }
+.board-card .bc-corner{font-size:1.2rem; line-height:1.1}
+.board-card .bc-center{font-size:3.5rem; position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
 .board-card .bc-range{
-  position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);
-  font-size:.55rem;color:rgba(255,255,255,.5);white-space:nowrap;
-  background:rgba(0,0,0,.4);border-radius:4px;padding:1px 4px;
+  position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);
+  font-size:0.95rem;color:#f0c040;white-space:nowrap;
+  background:rgba(0,0,0,.7);border-radius:8px;padding:4px 10px;
 }
 
-/* أوراقي في الأسفل */
-.my-hand-area{
-  display:flex;flex-direction:column;align-items:center;
-  width:100%;
+/* تصميم بطاقات الصور */
+.board-card.face-card, .hc.face-card {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block; /* إلغاء flex */
 }
+.board-card.face-card .bc-corner,
+.board-card.face-card .bc-center,
+.hc.face-card .cor,
+.hc.face-card .ctr {
+  display: none; /* إخفاء النص */
+}
+
+/* تكبير أوراقي (تحت) */
 .my-hand-cards{
-  display:flex;gap:3px;overflow-x:auto;
-  padding:6px 10px 8px;max-width:100vw;
+  display:flex;gap:10px;overflow-x:auto;
+  padding:15px 20px 30px;max-width:100vw;
   scrollbar-width:none;
 }
-.my-hand-cards::-webkit-scrollbar{display:none}
 .hc{
   flex-shrink:0;
-  width:68px;height:98px;
+  width:120px;height:180px; /* زيادة الحجم */
   background:linear-gradient(145deg,#fffff8,#f0f0e0);
-  border-radius:8px;
+  border-radius:14px;
   display:flex;flex-direction:column;justify-content:space-between;
-  padding:4px 5px;
-  box-shadow:0 4px 12px rgba(0,0,0,.55);
+  padding:12px;
+  box-shadow:0 12px 30px rgba(0,0,0,.6);
   cursor:not-allowed;
   transition:.15s;
   color:#1a1a1a;
@@ -268,83 +227,42 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
 .hc.r{color:#cc0000}
 .hc.ok{
   cursor:pointer;
-  box-shadow:0 0 0 2.5px #f0c040, 0 6px 20px rgba(0,0,0,.5);
-  transform:translateY(-12px);
+  box-shadow:0 0 0 5px #f0c040, 0 18px 40px rgba(0,0,0,0.7);
+  transform:translateY(-25px);
 }
-.hc.ok:hover{transform:translateY(-18px);}
-.hc .cor{font-size:.75rem;font-weight:900;line-height:1.1}
-.hc .ctr{font-size:1.6rem;text-align:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.hc.ok:hover{transform:translateY(-35px);}
+.hc .cor{font-size:1.3rem;font-weight:900;line-height:1.1}
+.hc .ctr{font-size:4rem;text-align:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
 
-/* شريط المعلومات العلوي */
-.top-bar{
-  position:absolute;top:0;left:0;right:0;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:.4rem .8rem;
-  background:rgba(0,0,0,.4);
-  z-index:20;
-  pointer-events:none;
+/* إضافات العرض */
+.pass-btn{
+  padding:0.8rem 2.2rem; font-size:1.2rem;
 }
-.top-title{font-weight:900;font-size:.9rem;color:#f0c040}
-.top-room{font-size:.7rem;color:rgba(255,255,255,.4)}
+.card-count-badge{
+  font-size:1rem; padding:5px 15px;
+}
 
-/* Turn indicator */
+/* مكان مؤشر الدور */
 .turn-banner{
   position:absolute;
-  top:50%;left:50%;transform:translate(-50%,-50%);
+  bottom: 230px; /* تحت السجادة */
+  left:50%;transform:translateX(-50%);
   z-index:6;
-  background:rgba(240,192,64,.9);
+  background:rgba(240,192,64,.95);
   color:#1a0f00;
-  font-weight:900;font-size:.8rem;
-  padding:.3rem .8rem;border-radius:20px;
+  font-weight:900;
+  font-size:1.3rem;
+  padding:0.7rem 1.8rem;
+  border-radius:30px;
   white-space:nowrap;
-  margin-top:90px;
   pointer-events:none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
-/* Pass btn */
-.pass-btn{
-  background:rgba(0,0,0,.4);border:1px solid rgba(240,192,64,.4);
-  color:rgba(240,192,64,.8);border-radius:8px;
-  padding:.35rem .9rem;cursor:pointer;
-  font-family:'Tajawal',sans-serif;font-size:.8rem;font-weight:700;
-  transition:.2s;margin-bottom:4px;
-}
-.pass-btn:disabled{opacity:.25;cursor:default;border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.3)}
-.pass-btn:not(:disabled):hover{background:rgba(240,192,64,.2)}
+/* التنبيهات */
+.toast{ font-size:1.2rem; padding:1.2rem 2.4rem; }
 
-.card-count-badge{
-  font-size:.65rem;
-  background:rgba(240,192,64,.2);
-  border:1px solid rgba(240,192,64,.3);
-  color:rgba(240,192,64,.8);
-  border-radius:10px;padding:1px 6px;
-  margin-bottom:2px;
-}
-
-/* ===== GAME OVER ===== */
-#gameover{
-  position:fixed;inset:0;display:none;
-  align-items:center;justify-content:center;
-  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
-  z-index:200;
-}
-.go-box{
-  background:linear-gradient(135deg,#1a472a,#0d2b18);
-  border:2px solid rgba(240,192,64,.4);
-  border-radius:24px;padding:2.5rem 2rem;
-  text-align:center;max-width:320px;width:90%;
-}
-.go-emoji{font-size:4rem;margin-bottom:.5rem}
-.go-title{font-size:1.8rem;font-weight:900;color:#f0c040;margin-bottom:.5rem}
-.go-loser{font-size:1.1rem;margin-bottom:.3rem;color:#ff9999}
-.go-sub{color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:1.5rem}
-.btn-restart{background:linear-gradient(135deg,#f0c040,#c8960c);border:none;border-radius:12px;padding:.85rem 2rem;color:#1a0f00;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;margin-bottom:.7rem;width:100%;}
-.btn-home{background:none;border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:.75rem 2rem;color:rgba(255,255,255,.6);font-family:'Tajawal',sans-serif;font-size:.9rem;cursor:pointer;width:100%;}
-
-.toast{position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.9);border:1px solid rgba(240,192,64,.4);border-radius:12px;padding:.6rem 1.2rem;font-size:.9rem;z-index:9999;animation:fadeout 3s forwards;pointer-events:none;white-space:nowrap;}
-@keyframes fadeout{0%,70%{opacity:1}100%{opacity:0}}
-
-/* Board popup لما يضغط على كبة */
+/* BOARD POPUP */
 .board-popup{
   position:fixed;inset:0;display:none;
   align-items:center;justify-content:center;
@@ -378,7 +296,6 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
 </head>
 <body>
 
-<!-- LOBBY -->
 <div id="lobby">
   <div class="lobby-inner">
     <div class="game-title">القاعده سجن</div>
@@ -397,7 +314,6 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
   </div>
 </div>
 
-<!-- WAITING -->
 <div id="waiting">
   <div style="color:rgba(255,255,255,.5);font-size:.9rem">كود الغرفة</div>
   <div class="big-code" id="wcode">------</div>
@@ -410,18 +326,14 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
   <div class="wait-msg" id="wmsg">في انتظار المعزب...</div>
 </div>
 
-<!-- GAME -->
 <div id="game">
-  <!-- شريط علوي -->
-  <div class="top-bar">
-    <div class="top-title">🃏 سبعة الديمن</div>
-    <div class="top-room" id="toproom"></div>
+  <div class="top-bar" style="position:absolute;top:0;width:100%;display:flex;justify-content:space-between;padding:10px 20px;background:rgba(0,0,0,0.4);z-index:20;">
+    <div class="top-title" style="color:#f0c040;font-weight:900;">🃏 سبعة الديمن</div>
+    <div class="top-room" id="toproom" style="opacity:0.6;"></div>
   </div>
 
-  <!-- السجادة -->
   <div class="carpet"></div>
 
-  <!-- البورد في وسط السجادة - أوراق حقيقية -->
   <div class="board-center" id="board-center">
     <div class="suit-pile" id="pile-s"></div>
     <div class="suit-pile" id="pile-h"></div>
@@ -429,7 +341,6 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
     <div class="suit-pile" id="pile-c"></div>
   </div>
 
-  <!-- لاعب 1 - فوق -->
   <div class="player-top" id="player-top" style="display:none">
     <div class="player-info" id="pinfo-top">
       <div class="p-av" id="pav-top">?</div>
@@ -438,7 +349,6 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
     <div class="opp-hand" id="phand-top"></div>
   </div>
 
-  <!-- لاعب 2 - يمين -->
   <div class="player-right" id="player-right" style="display:none">
     <div class="opp-hand vertical" id="phand-right"></div>
     <div class="player-info" id="pinfo-right">
@@ -447,7 +357,6 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
     </div>
   </div>
 
-  <!-- لاعب 4 - يسار -->
   <div class="player-left" id="player-left" style="display:none">
     <div class="opp-hand vertical" id="phand-left"></div>
     <div class="player-info" id="pinfo-left">
@@ -456,22 +365,19 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
     </div>
   </div>
 
-  <!-- Turn banner -->
   <div class="turn-banner" id="turnbanner">⏳</div>
 
-  <!-- أنا - تحت (3) -->
   <div class="player-bottom">
-    <div class="my-hand-area">
-      <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:3px">
-        <div class="card-count-badge">أوراقي: <span id="mycount">0</span></div>
-        <button class="pass-btn" id="passbtn" onclick="sendPass()" disabled>تمرير ↩</button>
+    <div class="my-hand-area" style="display:flex;flex-direction:column;align-items:center;width:100%;">
+      <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:10px">
+        <div class="card-count-badge" style="background:rgba(240,192,64,0.2);border:1px solid rgba(240,192,64,0.4);border-radius:10px;color:#f0c040;">أوراقي: <span id="mycount">0</span></div>
+        <button class="pass-btn" id="passbtn" onclick="sendPass()" disabled style="background:rgba(0,0,0,0.5);border:1px solid #f0c040;color:#f0c040;border-radius:10px;cursor:pointer;font-family:inherit;font-weight:700;">تمرير ↩</button>
       </div>
       <div class="my-hand-cards" id="myhand"></div>
     </div>
   </div>
 </div>
 
-<!-- BOARD POPUP -->
 <div class="board-popup" id="boardpopup" onclick="hideBoardPopup()">
   <div class="board-popup-inner" onclick="event.stopPropagation()">
     <div class="bp-title">🃏 حالة الكبب</div>
@@ -480,15 +386,13 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
   </div>
 </div>
 
-<!-- GAME OVER -->
-<div id="gameover">
-  <div class="go-box">
-    <div class="go-emoji">😂</div>
-    <div class="go-title">قم يا غشيم!</div>
-    <div class="go-loser" id="goloser"></div>
-    <div class="go-sub">تبي تندق مره ثانية؟</div>
-    <button class="btn-restart" id="gobtn" onclick="sendRestart()" style="display:none">🔄كر ما يضر</button>
-    <button class="btn-home" onclick="location.reload()">🏠 الرئيسية</button>
+<div id="gameover" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:200;backdrop-filter:blur(10px);">
+  <div class="go-box" style="text-align:center;background:linear-gradient(135deg,#1a472a,#0d2b18);border:3px solid #f0c040;border-radius:30px;padding:3rem;">
+    <div style="font-size:5rem;">😂</div>
+    <div style="font-size:2.5rem;color:#f0c040;font-weight:900;margin:1rem 0;">قم يا غشيم!</div>
+    <div id="goloser" style="font-size:1.5rem;color:#ff9999;margin-bottom:2rem;"></div>
+    <button onclick="sendRestart()" id="gobtn" style="display:none;background:#f0c040;color:#000;padding:1rem 3rem;border:none;border-radius:15px;font-weight:900;cursor:pointer;font-size:1.2rem;margin-bottom:1rem;width:100%;">🔄 كر ما يضر</button>
+    <button onclick="location.reload()" style="background:transparent;border:1px solid #fff;color:#fff;padding:0.8rem 2rem;border-radius:15px;cursor:pointer;width:100%;">🏠 الرئيسية</button>
   </div>
 </div>
 
@@ -500,6 +404,21 @@ let ws,myId,myRoomId,isHost=false,myName='';
 let gameState=null;
 
 const COLORS=['#e74c8b','#3498db','#e67e22','#9b59b6'];
+
+const FACE_CARD_IMAGES = {
+  '♠J': 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Jack_of_spades2.svg',
+  '♠Q': 'https://upload.wikimedia.org/wikipedia/commons/4/4d/Queen_of_spades2.svg',
+  '♠K': 'https://upload.wikimedia.org/wikipedia/commons/f/f1/King_of_spades2.svg',
+  '♥J': 'https://upload.wikimedia.org/wikipedia/commons/3/34/Jack_of_hearts2.svg',
+  '♥Q': 'https://upload.wikimedia.org/wikipedia/commons/5/57/Queen_of_hearts2.svg',
+  '♥K': 'https://upload.wikimedia.org/wikipedia/commons/7/72/King_of_hearts2.svg',
+  '♦J': 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Jack_of_diamonds2.svg',
+  '♦Q': 'https://upload.wikimedia.org/wikipedia/commons/8/89/Queen_of_diamonds2.svg',
+  '♦K': 'https://upload.wikimedia.org/wikipedia/commons/d/d3/King_of_diamonds2.svg',
+  '♣J': 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Jack_of_clubs2.svg',
+  '♣Q': 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Queen_of_clubs2.svg',
+  '♣K': 'https://upload.wikimedia.org/wikipedia/commons/f/f4/King_of_clubs2.svg'
+};
 
 function connect(cb){
   ws=new WebSocket(WS_URL);
@@ -527,8 +446,8 @@ function copyCode(){navigator.clipboard.writeText(myRoomId);toast('تم نسخ �
 function showErr(m){const e=document.getElementById('err');e.textContent=m;e.style.display='block';setTimeout(()=>e.style.display='none',3500);}
 function toast(msg,color='#f0c040'){
   const t=document.createElement('div');t.className='toast';t.textContent=msg;
-  t.style.color=color;t.style.borderColor=color+'66';
-  document.body.appendChild(t);setTimeout(()=>t.remove(),3100);
+  t.style.cssText=`position:fixed;top:2rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.9);border:2px solid ${color};border-radius:15px;color:${color};padding:1rem 2rem;z-index:9999;font-weight:900;`;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),3000);
 }
 
 function handle(msg){
@@ -580,7 +499,6 @@ function getPositions(players){
   for(let i=1;i<players.length;i++){
     opps.push(players[(myIdx+i)%players.length]);
   }
-  // opps[0]=يمين, opps[1]=فوق, opps[2]=يسار (حسب عدد اللاعبين)
   const pos={top:null,right:null,left:null};
   if(opps.length===1){pos.top=opps[0];}
   else if(opps.length===2){pos.right=opps[0];pos.left=opps[1];}
@@ -625,75 +543,91 @@ function renderGame(s){
   const myPlayer=s.players.find(p=>p.id===myId);
   const pos=getPositions(s.players);
 
-  // رندر اللاعبين
   renderPlayerSlot('top',pos.top,COLORS,s.players);
   renderPlayerSlot('right',pos.right,COLORS,s.players);
   renderPlayerSlot('left',pos.left,COLORS,s.players);
 
-  // البورد - أوراق حقيقية
   const suitIds={'♠':'pile-s','♥':'pile-h','♦':'pile-d','♣':'pile-c'};
   ['♠','♥','♦','♣'].forEach(suit=>{
     const b=s.board[suit];
     const isR=RED[suit];
     const pile=document.getElementById(suitIds[suit]);
+    pile.innerHTML = ''; 
+
     if(!b){
-      // ورقة فارغة
       pile.innerHTML=`<div class="board-card empty">
-        <div class="bc-corner" style="color:rgba(255,255,255,.2)">${suit}</div>
-        <div class="bc-center" style="color:rgba(255,255,255,.1)">${suit}</div>
-        <div class="bc-corner" style="transform:rotate(180deg);color:rgba(255,255,255,.2)">${suit}</div>
+        <div class="bc-corner" style="opacity:0.2">${suit}</div>
+        <div class="bc-center" style="opacity:0.1">${suit}</div>
       </div>`;
     } else {
-      // آخر ورقة مرمية (أعلى أو أسفل الكبة)
       const topVal=b.high;
       const isSeven=b.high===7&&b.low===7;
-      pile.innerHTML=`<div class="board-card${isR?' r':''}${isSeven?' seven':''}">
-        <div class="bc-corner"><div>${vd(topVal)}</div><div>${suit}</div></div>
-        <div class="bc-center">${suit}</div>
-        <div class="bc-corner" style="transform:rotate(180deg)"><div>${vd(topVal)}</div><div>${suit}</div></div>
-        <div class="bc-range">${vd(b.low)}—${vd(b.high)}</div>
-      </div>`;
+      const isFaceCard = topVal > 10;
+      const rotation = Math.floor(Math.random() * 21) - 10; // زاوية عشوائية بين -10 و 10
+
+      const card = document.createElement('div');
+      card.className = `board-card${isR?' r':''}${isSeven?' seven':''}${isFaceCard ? ' face-card' : ''}`;
+      card.style.transform = `rotate(${rotation}deg)`;
+
+      if (isFaceCard) {
+        const faceKey = `${suit}${VALS[topVal]}`;
+        card.style.backgroundImage = `url('${FACE_CARD_IMAGES[faceKey]}')`;
+      } else {
+        card.innerHTML = `
+          <div class="bc-corner"><div>${vd(topVal)}</div><div>${suit}</div></div>
+          <div class="bc-center">${suit}</div>
+          <div class="bc-corner" style="transform:rotate(180deg)"><div>${vd(topVal)}</div><div>${suit}</div></div>
+        `;
+      }
+      const range = document.createElement('div');
+      range.className = 'bc-range';
+      range.textContent = `${vd(b.low)}—${vd(b.high)}`;
+      card.appendChild(range);
+      pile.appendChild(card);
     }
   });
 
-  // Turn banner
   const cur=s.players.find(p=>p.id===s.currentPlayerId);
   const tb=document.getElementById('turnbanner');
   if(cur){
-    if(cur.id===myId){tb.textContent='⭐ دورك!';tb.style.background='rgba(240,192,64,.9)';tb.style.color='#1a0f00';}
-    else{tb.textContent='⏳ دور '+cur.name;tb.style.background='rgba(0,0,0,.6)';tb.style.color='rgba(255,255,255,.7)';}
+    if(cur.id===myId){tb.textContent='⭐ دورك يا وحش!';tb.style.background='#f0c040';tb.style.color='#000';}
+    else{tb.textContent='⏳ دور '+cur.name;tb.style.background='rgba(0,0,0,.7)';tb.style.color='#fff';}
   }
 
-  // يدي
   const hand=document.getElementById('myhand');
   hand.innerHTML='';
   const isMyTurn=s.currentPlayerId===myId;
   const sorted=[...s.myHand].sort((a,b)=>{
     const so={'♠':0,'♥':1,'♦':2,'♣':3};
-    // ترتيب: 7-8-9-10-J-Q-K-A (7 إلى 14)
     return so[a.suit]!==so[b.suit]?so[a.suit]-so[b.suit]:a.value-b.value;
   });
   sorted.forEach(card=>{
     const valid=isMyTurn&&s.validMoves.find(c=>c.suit===card.suit&&c.value===card.value);
     const isR=RED[card.suit];
+    const isFaceCard = card.value > 10;
+    
     const el=document.createElement('div');
-    el.className='hc'+(isR?' r':'')+(valid?' ok':'');
-    el.innerHTML=`<div class="cor"><div>${vd(card.value)}</div><div>${card.suit}</div></div>
-      <div class="ctr">${card.suit}</div>
-      <div class="cor" style="transform:rotate(180deg)"><div>${vd(card.value)}</div><div>${card.suit}</div></div>`;
+    el.className='hc'+(isR?' r':'')+(valid?' ok':'')+(isFaceCard ? ' face-card' : '');
+
+    if (isFaceCard) {
+      const faceKey = `${card.suit}${VALS[card.value]}`;
+      el.style.backgroundImage = `url('${FACE_CARD_IMAGES[faceKey]}')`;
+    } else {
+      el.innerHTML=`<div class="cor"><div>${vd(card.value)}</div><div>${card.suit}</div></div>
+        <div class="ctr">${card.suit}</div>
+        <div class="cor" style="transform:rotate(180deg)"><div>${vd(card.value)}</div><div>${card.suit}</div></div>`;
+    }
+    
     if(valid)el.onclick=()=>ws.send(JSON.stringify({type:'play_card',card}));
     hand.appendChild(el);
   });
   document.getElementById('mycount').textContent=s.myHand.length;
 
-  // Pass
   const pb=document.getElementById('passbtn');
-  if(isMyTurn&&s.validMoves.length===0){pb.disabled=false;pb.style.borderColor='rgba(240,192,64,.6)';pb.style.color='#f0c040';}
-  else{pb.disabled=true;pb.style.borderColor='';pb.style.color='';}
+  pb.disabled=!(isMyTurn&&s.validMoves.length===0);
 
-  // Game over
   if(s.gameOver){
-    document.getElementById('goloser').textContent='الخاسر: '+s.loser;
+    document.getElementById('goloser').textContent='الخاسر: '+s.loser+' 😭';
     document.getElementById('gameover').style.display='flex';
     if(isHost)document.getElementById('gobtn').style.display='block';
   }
