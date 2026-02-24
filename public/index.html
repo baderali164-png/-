@@ -77,7 +77,7 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
 .btn-start:hover{filter:brightness(1.1);transform:translateY(-1px)}
 .wait-msg{color:rgba(255,255,255,.35);font-size:.85rem;margin-top:.5rem}
 
-/* ===== GAME TABLE - REVISED SIZES & POSITION ===== */
+/* ===== GAME TABLE ===== */
 #game{
   display:none;
   width:100vw;height:100vh;
@@ -92,248 +92,187 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
   pointer-events:none;
 }
 
-/* تكبير السجادة */
+/* تكبير السجادة وجعلها مربعة أكثر */
 .carpet{
   position:absolute;
   top:50%;left:50%;
   transform:translate(-50%,-50%);
-  width:600px; /* زيادة العرض */
-  height:450px; /* زيادة الطول */
-  border-radius:24px;
+  width:750px; /* زيادة العرض */
+  height:600px; /* زيادة الطول */
+  border-radius:30px;
   background: 
     repeating-linear-gradient(45deg, rgba(180,120,40,.15) 0px, rgba(180,120,40,.15) 2px, transparent 2px, transparent 12px),
-    repeating-linear-gradient(-45deg, rgba(180,120,40,.1) 0px, rgba(180,120,40,.1) 2px, transparent 2px, transparent 12px),
     linear-gradient(135deg, #3d7a52, #2d6040, #3d7a52);
-  border:5px solid rgba(240,192,64,.6);
-  box-shadow:0 0 80px rgba(0,0,0,.6), inset 0 0 40px rgba(0,0,0,.3);
+  border:6px solid rgba(240,192,64,.6);
+  box-shadow:0 0 100px rgba(0,0,0,.7), inset 0 0 50px rgba(0,0,0,.3);
   z-index:1;
 }
 
-.carpet::before{
-  content:'';position:absolute;inset:12px;
-  border:2px solid rgba(240,192,64,.25);
-  border-radius:16px;pointer-events:none;
-}
-
-/* توزيع اللاعبين */
-.player-top{ position:absolute;top:15px;left:50%;transform:translateX(-50%); display:flex;flex-direction:column;align-items:center;z-index:10; }
-.player-right{ position:absolute;right:15px;top:50%;transform:translateY(-50%); display:flex;flex-direction:column;align-items:center;z-index:10; }
+/* توزيع اللاعبين - تكبير المربعات العلوية والجانبية */
+.player-top{ position:absolute;top:20px;left:50%;transform:translateX(-50%); display:flex;flex-direction:column;align-items:center;z-index:10; }
+.player-right{ position:absolute;right:30px;top:50%;transform:translateY(-50%); display:flex;flex-direction:column;align-items:center;z-index:10; }
+.player-left{ position:absolute;left:30px;top:50%;transform:translateY(-50%); display:flex;flex-direction:column;align-items:center;z-index:10; }
 .player-bottom{ position:absolute;bottom:0;left:50%;transform:translateX(-50%); display:flex;flex-direction:column;align-items:center;padding-bottom:15px;z-index:10;width:100%; }
-.player-left{ position:absolute;left:15px;top:50%;transform:translateY(-50%); display:flex;flex-direction:column;align-items:center;z-index:10; }
 
-/* تكبير أوراق الخصوم المقلوبة */
+/* أوراق الخصوم */
 .opp-hand{display:flex;justify-content:center;}
 .opp-card-back{
-  width:60px; /* زيادة */
-  height:90px; /* زيادة */
+  width:75px; 
+  height:110px; 
   background:linear-gradient(145deg,#1a4a2a,#0d2b18);
   border:2px solid rgba(240,192,64,.4);
   border-radius:10px;
-  box-shadow:3px 3px 8px rgba(0,0,0,.5);
-  margin:-18px; /* تداخل أكبر */
+  box-shadow:3px 3px 10px rgba(0,0,0,0.5);
+  margin:-25px; /* تداخل أكبر */
 }
 .opp-hand.vertical .opp-card-back{
-  width:90px;height:60px;
-  margin:-14px 0;
+  width:110px;height:75px;
+  margin:-20px 0;
 }
 
-/* تكبير معلومات اللاعب */
+/* معلومات اللاعب */
 .player-info{
-  background:rgba(0,0,0,0.7);
-  border:2px solid rgba(240,192,64,.3);
-  border-radius:18px;
-  padding:10px 20px;
-  display:flex;align-items:center;gap:12px;
-  font-size:1.2rem;font-weight:700;
-  margin:12px 0;
+  background:rgba(0,0,0,0.75);
+  border:2px solid rgba(240,192,64,.4);
+  border-radius:20px;
+  padding:12px 25px;
+  display:flex;align-items:center;gap:15px;
+  font-size:1.4rem;font-weight:900;
+  margin:15px 0;
 }
-.player-info.my-turn{ border-color:#f0c040; box-shadow:0 0 25px rgba(240,192,64,0.6); color:#f0c040; }
-.p-av{
-  width:48px;height:48px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.5rem;font-weight:900;
-  background:linear-gradient(135deg,#2d6a3f,#48bb78);
-}
+.player-info.my-turn{ border-color:#f0c040; box-shadow:0 0 30px rgba(240,192,64,0.7); color:#f0c040; }
 
-/* تكبير بورد الوسط */
+/* بورد الوسط - الكروت اللي داخل السجادة */
 .board-center{
   position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-55%);
+  transform:translate(-50%,-50%);
   z-index:5;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  gap:35px;
-  width:auto;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:40px;
 }
 
-/* تصميم البطاقات */
 .board-card{
-  width:100px;height:140px; /* زيادة الحجم */
+  width:120px;height:170px; /* تكبير كروت الوسط */
   background:linear-gradient(145deg,#fffff8,#f0f0e0);
-  border-radius:12px;
+  border-radius:15px;
   display:flex;flex-direction:column;justify-content:space-between;
-  padding:10px;
-  box-shadow:0 10px 25px rgba(0,0,0,.7);
+  padding:12px;
+  box-shadow:0 15px 35px rgba(0,0,0,.6);
   position:relative;
   color:#1a1a1a;
   font-weight:900;
-  transition: transform 0.3s ease-in-out;
 }
-.board-card.r{color:#cc0000}
-.board-card.seven{ box-shadow:0 0 0 4px #f0c040, 0 10px 25px rgba(0,0,0,.7), 0 0 35px rgba(240,192,64,0.5); }
-.board-card.empty{ background:rgba(0,0,0,.25); border:3px dashed rgba(255,255,255,.15); box-shadow:none; }
-.board-card .bc-corner{font-size:1.2rem; line-height:1.1}
-.board-card .bc-center{font-size:3.5rem; position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.board-card.face-card{
+  background-size: cover !important;
+  background-position: center !important;
+}
+.board-card.empty{ background:rgba(0,0,0,.2); border:3px dashed rgba(255,255,255,.1); box-shadow:none; }
+.board-card .bc-corner{font-size:1.4rem;}
+.board-card .bc-center{font-size:4.5rem; position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
 .board-card .bc-range{
-  position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);
-  font-size:0.95rem;color:#f0c040;white-space:nowrap;
-  background:rgba(0,0,0,.7);border-radius:8px;padding:4px 10px;
+  position:absolute;bottom:-35px;left:50%;transform:translateX(-50%);
+  font-size:1.1rem;color:#f0c040;white-space:nowrap;
+  background:rgba(0,0,0,.8);border-radius:10px;padding:5px 15px;
 }
 
-/* تصميم بطاقات الصور */
-.board-card.face-card, .hc.face-card {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: block; /* إلغاء flex */
+/* أوراقي - تصميم "كملنا" (متداخلة) */
+.my-hand-area{
+  position: relative;
+  display:flex;flex-direction:column;align-items:center;
+  width:100%;
 }
-.board-card.face-card .bc-corner,
-.board-card.face-card .bc-center,
-.hc.face-card .cor,
-.hc.face-card .ctr {
-  display: none; /* إخفاء النص */
-}
-
-/* تكبير أوراقي (تحت) */
 .my-hand-cards{
-  display:flex;gap:10px;overflow-x:auto;
-  padding:15px 20px 30px;max-width:100vw;
-  scrollbar-width:none;
+  display:flex;
+  padding:20px 50px 40px;
+  justify-content: center;
 }
 .hc{
   flex-shrink:0;
-  width:120px;height:180px; /* زيادة الحجم */
+  width:140px;height:210px; /* تكبير أوراقي */
   background:linear-gradient(145deg,#fffff8,#f0f0e0);
-  border-radius:14px;
+  border-radius:16px;
+  margin-left: -70px; /* جعل الأوراق تتداخل مثل كملنا */
   display:flex;flex-direction:column;justify-content:space-between;
-  padding:12px;
-  box-shadow:0 12px 30px rgba(0,0,0,.6);
+  padding:15px;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.4);
   cursor:not-allowed;
-  transition:.15s;
+  transition: transform 0.2s, margin 0.2s;
   color:#1a1a1a;
   position:relative;
+  z-index: 1;
 }
-.hc.r{color:#cc0000}
+.hc:first-child { margin-left: 0; }
+.hc.face-card{ background-size: cover !important; }
 .hc.ok{
   cursor:pointer;
-  box-shadow:0 0 0 5px #f0c040, 0 18px 40px rgba(0,0,0,0.7);
-  transform:translateY(-25px);
+  box-shadow:0 0 0 5px #f0c040, 0 20px 45px rgba(0,0,0,0.8);
+  transform:translateY(-40px);
+  z-index: 10;
 }
-.hc.ok:hover{transform:translateY(-35px);}
-.hc .cor{font-size:1.3rem;font-weight:900;line-height:1.1}
-.hc .ctr{font-size:4rem;text-align:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.hc.ok:hover{ transform:translateY(-55px); z-index: 20; }
+.hc .cor{font-size:1.6rem;font-weight:900;}
+.hc .ctr{font-size:5rem;text-align:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
 
-/* إضافات العرض */
+/* رفع خانة المعلومات وتمرير لتجنب التعارض */
+.controls-overlay{
+  position: absolute;
+  top: -80px; /* رفعهم فوق الكروت */
+  display: flex;
+  gap: 20px;
+  z-index: 30;
+}
 .pass-btn{
-  padding:0.8rem 2.2rem; font-size:1.2rem;
+  background:#f0c040; color:#000; border:none;
+  padding:10px 30px; font-size:1.3rem; font-weight:900;
+  border-radius:15px; cursor:pointer;
 }
+.pass-btn:disabled{ background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.3); cursor:default; }
 .card-count-badge{
-  font-size:1rem; padding:5px 15px;
+  background:rgba(0,0,0,0.6); border:2px solid #f0c040;
+  padding:10px 20px; border-radius:15px; font-size:1.2rem;
 }
 
-/* مكان مؤشر الدور */
+/* مؤشر الدور */
 .turn-banner{
   position:absolute;
-  bottom: 230px; /* تحت السجادة */
+  bottom: 280px; /* مكانه خارج مربع الجلسة */
   left:50%;transform:translateX(-50%);
   z-index:6;
-  background:rgba(240,192,64,.95);
-  color:#1a0f00;
-  font-weight:900;
-  font-size:1.3rem;
-  padding:0.7rem 1.8rem;
-  border-radius:30px;
-  white-space:nowrap;
-  pointer-events:none;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  background:rgba(240,192,64,0.95);
+  color:#000; font-weight:900; font-size:1.5rem;
+  padding:10px 30px; border-radius:40px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
-
-/* التنبيهات */
-.toast{ font-size:1.2rem; padding:1.2rem 2.4rem; }
-
-/* BOARD POPUP */
-.board-popup{
-  position:fixed;inset:0;display:none;
-  align-items:center;justify-content:center;
-  background:rgba(0,0,0,.7);z-index:150;
-}
-.board-popup.show{display:flex}
-.board-popup-inner{
-  background:linear-gradient(135deg,#1e4a2a,#133020);
-  border:2px solid rgba(240,192,64,.3);
-  border-radius:20px;padding:1rem;
-  max-width:360px;width:90%;
-}
-.bp-title{text-align:center;color:#f0c040;font-weight:700;margin-bottom:.8rem;font-size:.9rem}
-.bp-suits{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
-.bp-suit{background:rgba(0,0,0,.3);border-radius:10px;padding:.5rem;}
-.bp-sh{font-size:1.2rem;font-weight:900;margin-bottom:3px}
-.bp-sh.r{color:#ff4444}
-.bp-cards{display:flex;flex-wrap:wrap;gap:2px}
-.bp-card{
-  width:24px;height:34px;
-  background:linear-gradient(145deg,#fffff0,#f5f5dc);
-  border-radius:3px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  font-size:.5rem;font-weight:700;color:#1a1a1a;
-  box-shadow:0 1px 3px rgba(0,0,0,.3);
-}
-.bp-card.r{color:#cc0000}
-.bp-card.seven{background:linear-gradient(145deg,#ffd700,#ffa500);box-shadow:0 0 6px rgba(255,200,0,.5)}
-.bp-close{width:100%;margin-top:.8rem;background:rgba(240,192,64,.15);border:1px solid rgba(240,192,64,.3);color:rgba(240,192,64,.8);border-radius:8px;padding:.5rem;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.85rem}
 </style>
 </head>
 <body>
 
 <div id="lobby">
   <div class="lobby-inner">
-    <div class="game-title">القاعده سجن</div>
-    <div class="suits-row">♠ <span class="r">♥</span> <span class="r">♦</span> ♣</div>
+    <div class="game-title">سبعة الديمن</div>
     <div class="card-panel">
       <div id="err"></div>
-      <div class="flabel">سجل اسمك هنا</div>
       <input id="pname" type="text" placeholder="اكتب اسمك..." maxlength="16">
-      <button class="btn-gold" onclick="createRoom()">🏠 إنشاء صكه جديدة</button>
-      <div class="divider">ادخل مع النشامى اذا ودك</div>
-      <div class="flabel">كود الغرفة</div>
-      <input id="rcode" type="text" placeholder="مثال: AB12CD" maxlength="6"
-        style="text-align:center;letter-spacing:.4em;font-size:1.3rem;text-transform:uppercase">
-      <button class="btn-outline" onclick="joinRoom()">🔑 ادخل يالامير</button>
+      <button class="btn-gold" onclick="createRoom()">🏠 إنشاء صكة</button>
+      <div class="divider">أو</div>
+      <input id="rcode" type="text" placeholder="كود الغرفة">
+      <button class="btn-outline" onclick="joinRoom()">🔑 دخول</button>
     </div>
   </div>
 </div>
 
 <div id="waiting">
-  <div style="color:rgba(255,255,255,.5);font-size:.9rem">كود الغرفة</div>
   <div class="big-code" id="wcode">------</div>
-  <button class="copy-btn" onclick="copyCode()">📋 انسخ الكود</button>
-  <div class="wplayers-box">
-    <div style="color:#f0c040;font-weight:700;margin-bottom:.8rem">🎮 النشامى</div>
-    <div id="wplayers"></div>
-  </div>
-  <button class="btn-start" id="startbtn" onclick="startGame()" style="display:none">🃏 ابدأ اللعبة</button>
-  <div class="wait-msg" id="wmsg">في انتظار المعزب...</div>
+  <button class="copy-btn" onclick="copyCode()">📋 نسخ الكود</button>
+  <div class="wplayers-box" id="wplayers"></div>
+  <button class="btn-start" id="startbtn" onclick="startGame()" style="display:none">🃏 ابدأ اللعب</button>
 </div>
 
 <div id="game">
-  <div class="top-bar" style="position:absolute;top:0;width:100%;display:flex;justify-content:space-between;padding:10px 20px;background:rgba(0,0,0,0.4);z-index:20;">
-    <div class="top-title" style="color:#f0c040;font-weight:900;">🃏 سبعة الديمن</div>
-    <div class="top-room" id="toproom" style="opacity:0.6;"></div>
-  </div>
-
   <div class="carpet"></div>
-
+  <div class="turn-banner" id="turnbanner">انتظر دورك...</div>
+  
   <div class="board-center" id="board-center">
     <div class="suit-pile" id="pile-s"></div>
     <div class="suit-pile" id="pile-h"></div>
@@ -342,69 +281,32 @@ input:focus{border-color:rgba(240,192,64,.7);box-shadow:0 0 0 3px rgba(240,192,6
   </div>
 
   <div class="player-top" id="player-top" style="display:none">
-    <div class="player-info" id="pinfo-top">
-      <div class="p-av" id="pav-top">?</div>
-      <span id="pname-top">-</span>
-    </div>
+    <div class="player-info" id="pinfo-top"><div class="p-av" id="pav-top"></div><span id="pname-top"></span></div>
     <div class="opp-hand" id="phand-top"></div>
   </div>
-
   <div class="player-right" id="player-right" style="display:none">
     <div class="opp-hand vertical" id="phand-right"></div>
-    <div class="player-info" id="pinfo-right">
-      <div class="p-av" id="pav-right">?</div>
-      <span id="pname-right">-</span>
-    </div>
+    <div class="player-info" id="pinfo-right"><div class="p-av" id="pav-right"></div><span id="pname-right"></span></div>
   </div>
-
   <div class="player-left" id="player-left" style="display:none">
     <div class="opp-hand vertical" id="phand-left"></div>
-    <div class="player-info" id="pinfo-left">
-      <div class="p-av" id="pav-left">?</div>
-      <span id="pname-left">-</span>
-    </div>
+    <div class="player-info" id="pinfo-left"><div class="p-av" id="pav-left"></div><span id="pname-left"></span></div>
   </div>
 
-  <div class="turn-banner" id="turnbanner">⏳</div>
-
   <div class="player-bottom">
-    <div class="my-hand-area" style="display:flex;flex-direction:column;align-items:center;width:100%;">
-      <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:10px">
-        <div class="card-count-badge" style="background:rgba(240,192,64,0.2);border:1px solid rgba(240,192,64,0.4);border-radius:10px;color:#f0c040;">أوراقي: <span id="mycount">0</span></div>
-        <button class="pass-btn" id="passbtn" onclick="sendPass()" disabled style="background:rgba(0,0,0,0.5);border:1px solid #f0c040;color:#f0c040;border-radius:10px;cursor:pointer;font-family:inherit;font-weight:700;">تمرير ↩</button>
+    <div class="my-hand-area">
+      <div class="controls-overlay">
+        <div class="card-count-badge">أوراقي: <span id="mycount">0</span></div>
+        <button class="pass-btn" id="passbtn" onclick="sendPass()" disabled>تمرير ↩</button>
       </div>
       <div class="my-hand-cards" id="myhand"></div>
     </div>
   </div>
 </div>
 
-<div class="board-popup" id="boardpopup" onclick="hideBoardPopup()">
-  <div class="board-popup-inner" onclick="event.stopPropagation()">
-    <div class="bp-title">🃏 حالة الكبب</div>
-    <div class="bp-suits" id="bpsuitsinner"></div>
-    <button class="bp-close" onclick="hideBoardPopup()">إغلاق</button>
-  </div>
-</div>
-
-<div id="gameover" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:200;backdrop-filter:blur(10px);">
-  <div class="go-box" style="text-align:center;background:linear-gradient(135deg,#1a472a,#0d2b18);border:3px solid #f0c040;border-radius:30px;padding:3rem;">
-    <div style="font-size:5rem;">😂</div>
-    <div style="font-size:2.5rem;color:#f0c040;font-weight:900;margin:1rem 0;">قم يا غشيم!</div>
-    <div id="goloser" style="font-size:1.5rem;color:#ff9999;margin-bottom:2rem;"></div>
-    <button onclick="sendRestart()" id="gobtn" style="display:none;background:#f0c040;color:#000;padding:1rem 3rem;border:none;border-radius:15px;font-weight:900;cursor:pointer;font-size:1.2rem;margin-bottom:1rem;width:100%;">🔄 كر ما يضر</button>
-    <button onclick="location.reload()" style="background:transparent;border:1px solid #fff;color:#fff;padding:0.8rem 2rem;border-radius:15px;cursor:pointer;width:100%;">🏠 الرئيسية</button>
-  </div>
-</div>
-
 <script>
 const VALS={11:'J',12:'Q',13:'K',14:'A'};
 const RED={'♥':1,'♦':1};
-const WS_URL=location.protocol==='https:'?`wss://${location.host}`:`ws://${location.host}`;
-let ws,myId,myRoomId,isHost=false,myName='';
-let gameState=null;
-
-const COLORS=['#e74c8b','#3498db','#e67e22','#9b59b6'];
-
 const FACE_CARD_IMAGES = {
   '♠J': 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Jack_of_spades2.svg',
   '♠Q': 'https://upload.wikimedia.org/wikipedia/commons/4/4d/Queen_of_spades2.svg',
@@ -420,246 +322,89 @@ const FACE_CARD_IMAGES = {
   '♣K': 'https://upload.wikimedia.org/wikipedia/commons/f/f4/King_of_clubs2.svg'
 };
 
+const WS_URL=location.protocol==='https:'?`wss://${location.host}`:`ws://${location.host}`;
+let ws,myId,myRoomId,isHost=false,gameState=null;
+
 function connect(cb){
   ws=new WebSocket(WS_URL);
   ws.onopen=cb;
   ws.onmessage=e=>handle(JSON.parse(e.data));
-  ws.onclose=()=>toast('انقطع الاتصال 😞','#ff6666');
 }
+
 function createRoom(){
-  myName=document.getElementById('pname').value.trim();
-  if(!myName){showErr('أدخل اسمك أولاً');return;}
-  connect(()=>ws.send(JSON.stringify({type:'create_room',name:myName})));
+  const name=document.getElementById('pname').value.trim();
+  if(!name)return;
+  connect(()=>ws.send(JSON.stringify({type:'create_room',name})));
 }
+
 function joinRoom(){
-  myName=document.getElementById('pname').value.trim();
+  const name=document.getElementById('pname').value.trim();
   const code=document.getElementById('rcode').value.trim().toUpperCase();
-  if(!myName){showErr('أدخل اسمك أولاً');return;}
-  if(!code){showErr('أدخل كود الغرفة');return;}
-  connect(()=>ws.send(JSON.stringify({type:'join_room',roomId:code,name:myName})));
+  if(!name||!code)return;
+  connect(()=>ws.send(JSON.stringify({type:'join_room',roomId:code,name})));
 }
+
 function startGame(){ws.send(JSON.stringify({type:'start_game'}));}
 function sendPass(){ws.send(JSON.stringify({type:'pass'}));}
-function sendRestart(){ws.send(JSON.stringify({type:'restart'}));}
-function copyCode(){navigator.clipboard.writeText(myRoomId);toast('تم نسخ الكود! 📋');}
-
-function showErr(m){const e=document.getElementById('err');e.textContent=m;e.style.display='block';setTimeout(()=>e.style.display='none',3500);}
-function toast(msg,color='#f0c040'){
-  const t=document.createElement('div');t.className='toast';t.textContent=msg;
-  t.style.cssText=`position:fixed;top:2rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.9);border:2px solid ${color};border-radius:15px;color:${color};padding:1rem 2rem;z-index:9999;font-weight:900;`;
-  document.body.appendChild(t);setTimeout(()=>t.remove(),3000);
-}
 
 function handle(msg){
-  if(msg.type==='room_created'){
-    myId=msg.playerId;myRoomId=msg.roomId;isHost=true;
+  if(msg.type==='room_created'||msg.type==='joined_room'){
+    myId=msg.playerId;myRoomId=msg.roomId;isHost=(msg.type==='room_created');
     document.getElementById('lobby').style.display='none';
     document.getElementById('waiting').style.display='flex';
     document.getElementById('wcode').textContent=myRoomId;
-    document.getElementById('startbtn').style.display='block';
-    document.getElementById('wmsg').textContent='شير الكود مع الشباب لاهنت';
+    if(isHost)document.getElementById('startbtn').style.display='block';
   }
-  else if(msg.type==='joined_room'){
-    myId=msg.playerId;myRoomId=msg.roomId;
-    document.getElementById('lobby').style.display='none';
-    document.getElementById('waiting').style.display='flex';
-    document.getElementById('wcode').textContent=myRoomId;
-  }
-  else if(msg.type==='player_list'){renderWaiting(msg.players);}
   else if(msg.type==='game_started'){
     document.getElementById('waiting').style.display='none';
     document.getElementById('game').style.display='block';
-    document.getElementById('gameover').style.display='none';
-    document.getElementById('toproom').textContent='غرفة: '+myRoomId;
   }
-  else if(msg.type==='game_state'){gameState=msg;renderGame(msg);}
-  else if(msg.type==='player_out'){toast('🎉 '+msg.playerName+' أنهى أوراقه!','#48bb78');}
-  else if(msg.type==='error'){toast('⚠️ '+msg.msg,'#ff9999');}
-}
-
-function renderWaiting(players){
-  const el=document.getElementById('wplayers');el.innerHTML='';
-  for(let i=0;i<4;i++){
-    const p=players[i];const d=document.createElement('div');d.className='wp';
-    if(p){
-      d.innerHTML=`<div class="wp-av">${p.name[0]}</div><div><span style="font-weight:700">${p.name}${p.id===myId?' (أنت)':''}</span>${i===0?'<span class="badge">مضيف</span>':''}</div>`;
-    }else{
-      d.innerHTML=`<div class="wp-av empty">?</div><span style="color:rgba(255,255,255,.3)">في انتظار...</span>`;
-    }
-    el.appendChild(d);
-  }
+  else if(msg.type==='game_state'){renderGame(msg);}
 }
 
 function vd(v){return VALS[v]||v;}
 
-// توزيع اللاعبين حسب موقعهم
-function getPositions(players){
-  const myIdx=players.findIndex(p=>p.id===myId);
-  const opps=[];
-  for(let i=1;i<players.length;i++){
-    opps.push(players[(myIdx+i)%players.length]);
-  }
-  const pos={top:null,right:null,left:null};
-  if(opps.length===1){pos.top=opps[0];}
-  else if(opps.length===2){pos.right=opps[0];pos.left=opps[1];}
-  else if(opps.length===3){pos.right=opps[0];pos.top=opps[1];pos.left=opps[2];}
-  return pos;
-}
-
-function makeCardBacks(count,vertical=false){
-  const n=Math.min(count,10);
-  let h='';
-  for(let i=0;i<n;i++)h+=`<div class="opp-card-back"></div>`;
-  return h;
-}
-
-function renderPlayerSlot(pos,player,colors,allPlayers){
-  const slots={top:'top',right:'right',left:'left'};
-  const wrap=document.getElementById('player-'+pos);
-  const info=document.getElementById('pinfo-'+pos);
-  const av=document.getElementById('pav-'+pos);
-  const nameEl=document.getElementById('pname-'+pos);
-  const handEl=document.getElementById('phand-'+pos);
-
-  if(!player){wrap.style.display='none';return;}
-  wrap.style.display='flex';
-
-  const idx=allPlayers.findIndex(p=>p.id===player.id);
-  av.style.background=`linear-gradient(135deg,${colors[idx%colors.length]},${colors[(idx+1)%colors.length]})`;
-  av.textContent=player.name[0];
-  nameEl.textContent=player.name+(player.isOut?' ✅':'');
-
-  info.className='player-info'+(player.id===currentPlayerId?' my-turn':'')+(player.isOut?' out':'');
-
-  const isV=(pos==='left'||pos==='right');
-  handEl.className='opp-hand'+(isV?' vertical':'');
-  handEl.innerHTML=makeCardBacks(player.cardCount,isV);
-}
-
-let currentPlayerId='';
-
 function renderGame(s){
-  currentPlayerId=s.currentPlayerId;
-  const myPlayer=s.players.find(p=>p.id===myId);
-  const pos=getPositions(s.players);
-
-  renderPlayerSlot('top',pos.top,COLORS,s.players);
-  renderPlayerSlot('right',pos.right,COLORS,s.players);
-  renderPlayerSlot('left',pos.left,COLORS,s.players);
-
   const suitIds={'♠':'pile-s','♥':'pile-h','♦':'pile-d','♣':'pile-c'};
+  
+  // رندر بورد الوسط
   ['♠','♥','♦','♣'].forEach(suit=>{
     const b=s.board[suit];
-    const isR=RED[suit];
     const pile=document.getElementById(suitIds[suit]);
-    pile.innerHTML = ''; 
-
     if(!b){
-      pile.innerHTML=`<div class="board-card empty">
-        <div class="bc-corner" style="opacity:0.2">${suit}</div>
-        <div class="bc-center" style="opacity:0.1">${suit}</div>
+      pile.innerHTML=`<div class="board-card empty"><div class="bc-center">${suit}</div></div>`;
+    }else{
+      const isFace=b.high>10;
+      const img=isFace?FACE_CARD_IMAGES[suit+vd(b.high)]:null;
+      pile.innerHTML=`<div class="board-card ${RED[suit]?'r':''} ${isFace?'face-card':''}" style="${isFace?`background:url(${img})`:''}">
+        ${!isFace?`<div class="bc-corner"><div>${vd(b.high)}</div><div>${suit}</div></div><div class="bc-center">${suit}</div>`:''}
+        <div class="bc-range">${vd(b.low)} — ${vd(b.high)}</div>
       </div>`;
-    } else {
-      const topVal=b.high;
-      const isSeven=b.high===7&&b.low===7;
-      const isFaceCard = topVal > 10;
-      const rotation = Math.floor(Math.random() * 21) - 10; // زاوية عشوائية بين -10 و 10
-
-      const card = document.createElement('div');
-      card.className = `board-card${isR?' r':''}${isSeven?' seven':''}${isFaceCard ? ' face-card' : ''}`;
-      card.style.transform = `rotate(${rotation}deg)`;
-
-      if (isFaceCard) {
-        const faceKey = `${suit}${VALS[topVal]}`;
-        card.style.backgroundImage = `url('${FACE_CARD_IMAGES[faceKey]}')`;
-      } else {
-        card.innerHTML = `
-          <div class="bc-corner"><div>${vd(topVal)}</div><div>${suit}</div></div>
-          <div class="bc-center">${suit}</div>
-          <div class="bc-corner" style="transform:rotate(180deg)"><div>${vd(topVal)}</div><div>${suit}</div></div>
-        `;
-      }
-      const range = document.createElement('div');
-      range.className = 'bc-range';
-      range.textContent = `${vd(b.low)}—${vd(b.high)}`;
-      card.appendChild(range);
-      pile.appendChild(card);
     }
   });
 
-  const cur=s.players.find(p=>p.id===s.currentPlayerId);
-  const tb=document.getElementById('turnbanner');
-  if(cur){
-    if(cur.id===myId){tb.textContent='⭐ دورك يا وحش!';tb.style.background='#f0c040';tb.style.color='#000';}
-    else{tb.textContent='⏳ دور '+cur.name;tb.style.background='rgba(0,0,0,.7)';tb.style.color='#fff';}
-  }
-
+  // رندر يدي (متداخلة)
   const hand=document.getElementById('myhand');
   hand.innerHTML='';
   const isMyTurn=s.currentPlayerId===myId;
-  const sorted=[...s.myHand].sort((a,b)=>{
-    const so={'♠':0,'♥':1,'♦':2,'♣':3};
-    return so[a.suit]!==so[b.suit]?so[a.suit]-so[b.suit]:a.value-b.value;
-  });
-  sorted.forEach(card=>{
-    const valid=isMyTurn&&s.validMoves.find(c=>c.suit===card.suit&&c.value===card.value);
-    const isR=RED[card.suit];
-    const isFaceCard = card.value > 10;
-    
+  s.myHand.sort((a,b)=>a.value-b.value).forEach(card=>{
+    const valid=isMyTurn&&s.validMoves.find(m=>m.suit===card.suit&&m.value===card.value);
+    const isFace=card.value>10;
+    const img=isFace?FACE_CARD_IMAGES[card.suit+vd(card.value)]:null;
     const el=document.createElement('div');
-    el.className='hc'+(isR?' r':'')+(valid?' ok':'')+(isFaceCard ? ' face-card' : '');
-
-    if (isFaceCard) {
-      const faceKey = `${card.suit}${VALS[card.value]}`;
-      el.style.backgroundImage = `url('${FACE_CARD_IMAGES[faceKey]}')`;
-    } else {
-      el.innerHTML=`<div class="cor"><div>${vd(card.value)}</div><div>${card.suit}</div></div>
-        <div class="ctr">${card.suit}</div>
-        <div class="cor" style="transform:rotate(180deg)"><div>${vd(card.value)}</div><div>${card.suit}</div></div>`;
-    }
-    
-    if(valid)el.onclick=()=>ws.send(JSON.stringify({type:'play_card',card}));
+    el.className=`hc ${RED[card.suit]?'r':''} ${valid?'ok':''} ${isFace?'face-card':''}`;
+    if(isFace) el.style.background=`url(${img})`;
+    else el.innerHTML=`<div class="cor"><div>${vd(card.value)}</div><div>${card.suit}</div></div><div class="ctr">${card.suit}</div>`;
+    if(valid) el.onclick=()=>ws.send(JSON.stringify({type:'play_card',card}));
     hand.appendChild(el);
   });
+
+  // تحديث زر التمرير والمؤشرات
   document.getElementById('mycount').textContent=s.myHand.length;
-
-  const pb=document.getElementById('passbtn');
-  pb.disabled=!(isMyTurn&&s.validMoves.length===0);
-
-  if(s.gameOver){
-    document.getElementById('goloser').textContent='الخاسر: '+s.loser+' 😭';
-    document.getElementById('gameover').style.display='flex';
-    if(isHost)document.getElementById('gobtn').style.display='block';
-  }
+  document.getElementById('passbtn').disabled=!(isMyTurn && s.validMoves.length===0);
+  const curPlayer=s.players.find(p=>p.id===s.currentPlayerId);
+  document.getElementById('turnbanner').textContent=isMyTurn?'⭐ دورك يا بطل!':'⏳ دور: '+curPlayer.name;
 }
-
-function showBoardPopup(){
-  if(!gameState)return;
-  const inner=document.getElementById('bpsuitsinner');
-  inner.innerHTML='';
-  ['♠','♥','♦','♣'].forEach(suit=>{
-    const b=gameState.board[suit];
-    const isR=RED[suit];
-    const div=document.createElement('div');
-    div.className='bp-suit';
-    let cards='';
-    if(b){
-      for(let v=b.low;v<=b.high;v++){
-        cards+=`<div class="bp-card${isR?' r':''}${v===7?' seven':''}">${vd(v)}</div>`;
-      }
-    }
-    const names={'♠':'سباتي','♥':'قلب','♦':'ديمن','♣':'جاج'};
-    div.innerHTML=`<div class="bp-sh${isR?' r':''}">${suit} ${names[suit]}</div>
-      <div class="bp-cards">${cards||'<span style="color:rgba(255,255,255,.3);font-size:.7rem">فارغ</span>'}</div>`;
-    inner.appendChild(div);
-  });
-  document.getElementById('boardpopup').classList.add('show');
-}
-function hideBoardPopup(){document.getElementById('boardpopup').classList.remove('show');}
-
-document.getElementById('rcode').addEventListener('input',e=>e.target.value=e.target.value.toUpperCase());
-document.getElementById('pname').addEventListener('keyup',e=>{if(e.key==='Enter')document.getElementById('rcode').focus();});
-document.getElementById('rcode').addEventListener('keyup',e=>{if(e.key==='Enter')joinRoom();});
 </script>
 </body>
 </html>
