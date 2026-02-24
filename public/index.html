@@ -2,18 +2,14 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>سبعة الديمن</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --felt:#8B4513;
-  --carpet-border:#c8960c;
   --gold:#f0c040;
   --gold2:#c8960c;
-  --bg:#2a1a0a;
-  --card-w:58px;
-  --card-h:84px;
+  --bg:#c8a87a;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;height:100%;font-family:'Tajawal',sans-serif;overflow:hidden;background:var(--bg)}
@@ -29,15 +25,13 @@ html,body{width:100%;height:100%;font-family:'Tajawal',sans-serif;overflow:hidde
   background:linear-gradient(160deg,#2a1505,#1a0d02);
   border:3px solid var(--gold2);
   border-radius:20px;padding:2rem 1.8rem;
-  box-shadow:0 0 60px rgba(200,150,12,.2), inset 0 1px 0 rgba(240,192,64,.1);
-  text-align:center;
+  box-shadow:0 0 60px rgba(200,150,12,.2);text-align:center;
 }
 .lobby-title{
   font-size:2.6rem;font-weight:900;
   background:linear-gradient(135deg,#f0c040,#fff5a0,#c8960c);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  margin-bottom:.2rem;text-shadow:none;
-  filter:drop-shadow(0 2px 8px rgba(240,192,64,.4));
+  margin-bottom:.2rem;filter:drop-shadow(0 2px 8px rgba(240,192,64,.4));
 }
 .lobby-suits{font-size:1.6rem;letter-spacing:.6rem;margin-bottom:1.8rem;color:rgba(255,255,255,.7)}
 .lobby-suits .r{color:#e55}
@@ -61,7 +55,6 @@ html,body{width:100%;height:100%;font-family:'Tajawal',sans-serif;overflow:hidde
 .lbtn.gold{background:linear-gradient(135deg,#f0c040,#c8960c);color:#1a0800;}
 .lbtn.gold:hover{filter:brightness(1.1);transform:translateY(-1px)}
 .lbtn.outline{background:rgba(240,192,64,.08);border:1.5px solid rgba(240,192,64,.35);color:rgba(240,192,64,.9);}
-.lbtn.outline:hover{background:rgba(240,192,64,.15)}
 .ldivider{color:rgba(255,255,255,.25);font-size:.78rem;margin:.4rem 0 .9rem;display:flex;align-items:center;gap:.5rem}
 .ldivider::before,.ldivider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1)}
 #lerr{display:none;color:#ff9999;font-size:.82rem;margin-bottom:.7rem;background:rgba(255,0,0,.1);border-radius:8px;padding:.45rem;text-align:center}
@@ -74,349 +67,383 @@ html,body{width:100%;height:100%;font-family:'Tajawal',sans-serif;overflow:hidde
 }
 .w-code-label{color:rgba(255,255,255,.4);font-size:.85rem;margin-bottom:.3rem}
 .w-code{font-size:3.5rem;font-weight:900;color:var(--gold);letter-spacing:.4em;filter:drop-shadow(0 0 20px rgba(240,192,64,.4));margin-bottom:.8rem}
-.w-copybtn{background:none;border:1px solid rgba(240,192,64,.3);color:rgba(240,192,64,.7);border-radius:8px;padding:.35rem 1rem;cursor:pointer;font-family:'Tajawal',sans-serif;margin-bottom:1.5rem;transition:.2s;}
-.w-copybtn:hover{background:rgba(240,192,64,.1)}
+.w-copybtn{background:none;border:1px solid rgba(240,192,64,.3);color:rgba(240,192,64,.7);border-radius:8px;padding:.35rem 1rem;cursor:pointer;font-family:'Tajawal',sans-serif;margin-bottom:1.5rem;}
 .w-players{background:rgba(0,0,0,.4);border:1px solid rgba(240,192,64,.2);border-radius:14px;padding:1rem;width:90%;max-width:340px;margin-bottom:1rem;}
 .wp-row{display:flex;align-items:center;gap:.8rem;padding:.45rem;border-radius:8px}
 .wp-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.95rem;flex-shrink:0;background:linear-gradient(135deg,#8B4513,#c8960c);}
-.wp-av.empty{background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);font-size:1.2rem}
-.wp-name{font-weight:700;font-size:.9rem}
+.wp-av.empty{background:rgba(255,255,255,.07);color:rgba(255,255,255,.25)}
+.wp-name{font-weight:700;font-size:.9rem;color:#fff}
 .wp-host{font-size:.6rem;padding:.15rem .4rem;border-radius:4px;background:var(--gold);color:#1a0800;font-weight:700;margin-right:.4rem}
-.w-startbtn{background:linear-gradient(135deg,#f0c040,#c8960c);border:none;border-radius:12px;padding:.9rem 2.5rem;color:#1a0800;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;cursor:pointer;transition:.2s;margin-bottom:.5rem}
-.w-startbtn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.w-startbtn{background:linear-gradient(135deg,#f0c040,#c8960c);border:none;border-radius:12px;padding:.9rem 2.5rem;color:#1a0800;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;cursor:pointer;margin-bottom:.5rem}
 .w-msg{color:rgba(255,255,255,.3);font-size:.8rem}
 
-/* ======= GAME TABLE ======= */
+/* ======= TABLE ======= */
 #game{
   display:none;
   position:fixed;inset:0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 50%, #4a2208 0%, #2a1204 50%, #170900 100%);
+  /* بيج مثل كملنا */
+  background:linear-gradient(160deg,#d4b896 0%,#c8a87a 40%,#b89460 100%);
 }
 
-/* الإطار الخارجي للطاولة */
-.table-frame{
-  position:absolute;inset:0;
-  border:8px solid #5a3010;
-  box-shadow:inset 0 0 30px rgba(0,0,0,.5);
+/* إطار الطاولة */
+#game::before{
+  content:'';position:absolute;inset:0;
+  border:6px solid #8B6040;
+  box-shadow:inset 0 0 40px rgba(100,60,20,.3);
   pointer-events:none;z-index:0;
 }
 
-/* السجادة المركزية - نفس الصورة تماماً */
+/* السجادة - كبيرة مثل الصورة */
 .carpet{
   position:absolute;
   top:50%;left:50%;
-  transform:translate(-50%,-52%);
-  width:min(72vw,320px);
-  height:min(55vw,240px);
-  border-radius:10px;
+  transform:translate(-50%,-50%);
+  width:min(88vw, 520px);
+  height:min(62vh, 400px);
+  border-radius:12px;
   z-index:1;
   overflow:hidden;
-  box-shadow:0 8px 40px rgba(0,0,0,.7), 0 0 0 4px #8B4513, 0 0 0 7px var(--gold2), 0 0 0 10px #5a3010;
+  box-shadow:
+    0 0 0 5px #8B4513,
+    0 0 0 9px var(--gold2),
+    0 0 0 13px #6b3410,
+    0 8px 40px rgba(0,0,0,.5);
 }
-
-/* النقوش الهندسية للسجادة */
-.carpet-inner{
+.carpet-bg{
   width:100%;height:100%;
-  position:relative;
   background:
-    /* خطوط أفقية */
     repeating-linear-gradient(0deg,
-      transparent 0px, transparent 18px,
-      rgba(0,0,0,.15) 18px, rgba(0,0,0,.15) 20px
+      transparent 0px,transparent 22px,
+      rgba(0,0,0,.12) 22px,rgba(0,0,0,.12) 24px
     ),
-    /* تدرج الألوان الرئيسي */
     linear-gradient(180deg,
-      #8B2500 0%,
-      #7a3010 8%,
-      #2d5a1e 15%,
-      #1e4a14 22%,
-      #8B4513 28%,
-      #6b3410 35%,
-      #c87820 40%,
-      #8B4513 45%,
-      #4a1a08 50%,
-      #8B4513 55%,
-      #c87820 60%,
-      #6b3410 65%,
-      #8B4513 72%,
-      #1e4a14 78%,
-      #2d5a1e 85%,
-      #7a3010 92%,
-      #8B2500 100%
+      #9B1C1C 0%,#7a1515 6%,
+      #2d5a1e 10%,#1e4014 16%,
+      #8B6914 20%,
+      #6b3010 24%,#c87820 28%,#6b3010 32%,
+      #3a1a08 36%,#6b3010 40%,
+      #c87820 44%,#8B6914 48%,
+      #3a1a08 52%,#8B6914 56%,
+      #c87820 60%,#6b3010 64%,
+      #3a1a08 68%,#6b3010 72%,
+      #c87820 76%,#8B6914 80%,
+      #2d5a1e 84%,#1e4014 88%,
+      #7a1515 94%,#9B1C1C 100%
     );
 }
-
-/* زخارف السجادة */
-.carpet-pattern{
+.carpet-overlay{
   position:absolute;inset:0;
   background:
     repeating-linear-gradient(90deg,
-      transparent 0px, transparent 28px,
-      rgba(180,100,20,.2) 28px, rgba(180,100,20,.2) 30px
+      transparent 0px,transparent 32px,
+      rgba(180,100,20,.18) 32px,rgba(180,100,20,.18) 34px
     ),
-    repeating-linear-gradient(45deg,
-      transparent 0px, transparent 14px,
-      rgba(0,0,0,.08) 14px, rgba(0,0,0,.08) 15px
+    repeating-linear-gradient(-45deg,
+      transparent 0,transparent 10px,
+      rgba(0,0,0,.06) 10px,rgba(0,0,0,.06) 11px
     );
 }
-
-/* إطار السجادة الداخلي */
-.carpet::before{
-  content:'';position:absolute;inset:5px;
-  border:2px solid rgba(200,150,30,.4);
+/* الإطار الداخلي للسجادة */
+.carpet::after{
+  content:'';position:absolute;inset:8px;
+  border:2px solid rgba(220,170,40,.35);
   border-radius:6px;z-index:2;pointer-events:none;
 }
-.carpet::after{
-  content:'';position:absolute;inset:10px;
-  border:1px solid rgba(200,150,30,.2);
-  border-radius:4px;z-index:2;pointer-events:none;
-}
 
-/* البورد فوق السجادة */
-.board-grid{
+/* ======= الورقة الوسط - طولية وكبيرة ======= */
+.board-area{
   position:absolute;
   top:50%;left:50%;
-  transform:translate(-50%,-52%);
+  transform:translate(-50%,-50%);
   z-index:5;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr 1fr;
-  gap:8px;
-  width:min(44vw, 190px);
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
 }
-.b-pile{
-  display:flex;flex-direction:column;align-items:center;gap:3px;
+/* 4 أوراق طولية */
+.bc-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
   cursor:pointer;
 }
-.b-card{
-  width:min(19vw,78px);height:min(14vw,58px);
-  background:linear-gradient(145deg,#fffef5,#f0eed5);
-  border-radius:5px;
-  box-shadow:0 3px 10px rgba(0,0,0,.6);
+.bc{
+  width:min(13vw,68px);
+  height:min(19vw,98px);
+  border-radius:8px;
+  box-shadow:0 4px 16px rgba(0,0,0,.6);
   display:flex;flex-direction:column;justify-content:space-between;
-  padding:3px 4px;
-  color:#1a1a1a;font-weight:900;
+  padding:5px 6px;
   position:relative;
+  font-weight:900;
   transition:.15s;
 }
-.b-card.r{color:#cc0000}
-.b-card.seven{box-shadow:0 0 0 2px #f0c040,0 3px 12px rgba(0,0,0,.6),0 0 15px rgba(240,192,64,.3)}
-.b-card.empty{
-  background:rgba(0,0,0,.25);
-  border:2px dashed rgba(255,255,255,.12);
+.bc.white-card{
+  background:linear-gradient(145deg,#fffef5,#f0eed5);
+  color:#1a1a1a;
+}
+.bc.white-card.r{color:#cc0000}
+.bc.seven{
+  box-shadow:0 0 0 3px #f0c040, 0 4px 16px rgba(0,0,0,.6), 0 0 20px rgba(240,192,64,.4);
+}
+.bc.empty-slot{
+  background:rgba(0,0,0,.18);
+  border:2px dashed rgba(255,255,255,.18);
   box-shadow:none;
 }
-.b-card .bc{font-size:.65rem;line-height:1}
-.b-card .bm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.1rem}
-.b-range{
-  font-size:.52rem;color:rgba(255,255,255,.55);
-  background:rgba(0,0,0,.45);border-radius:4px;
-  padding:1px 4px;white-space:nowrap;
+.bc .corner{font-size:.78rem;line-height:1.1}
+.bc .mid{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:1.7rem;
+}
+/* صور الوجوه للـ J Q K A */
+.bc .face-img{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.4rem;
+  pointer-events:none;
+}
+.bc-range{
+  font-size:.55rem;
+  background:rgba(0,0,0,.45);
+  color:rgba(255,255,255,.65);
+  border-radius:4px;padding:1px 5px;
+  white-space:nowrap;
 }
 
-/* الشريط العلوي */
+/* ======= TOP BAR ======= */
 .topbar{
   position:absolute;top:0;left:0;right:0;
   display:flex;justify-content:space-between;align-items:center;
-  padding:.35rem .7rem;
-  background:linear-gradient(180deg,rgba(0,0,0,.7) 0%,transparent 100%);
+  padding:.35rem .8rem;
+  background:rgba(0,0,0,.2);
   z-index:20;pointer-events:none;
 }
-.topbar-title{font-weight:900;font-size:.88rem;color:var(--gold)}
-.topbar-room{font-size:.68rem;color:rgba(255,255,255,.35)}
+.topbar-title{font-weight:900;font-size:.9rem;color:#5a2800;text-shadow:0 1px 0 rgba(255,255,255,.3)}
+.topbar-room{font-size:.68rem;color:rgba(90,40,0,.7)}
 
 /* ======= اللاعبون ======= */
-/* أنا - تحت */
+
+/* --- لاعب فوق --- */
+.opp-top{
+  position:absolute;
+  top:2px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;
+  z-index:15;
+}
+.opp-info{
+  background:rgba(255,255,255,.25);
+  border:1px solid rgba(255,255,255,.4);
+  border-radius:50px;
+  padding:3px 10px 3px 8px;
+  display:flex;align-items:center;gap:5px;
+  font-size:.75rem;font-weight:700;
+  white-space:nowrap;
+  color:#3a1a00;
+  margin:2px 0;
+  box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+.opp-info.turn{
+  background:rgba(240,192,64,.3);
+  border-color:var(--gold);
+  box-shadow:0 0 10px rgba(240,192,64,.4);
+}
+.opp-info.out{opacity:.4}
+.opp-av{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:900;color:#fff;flex-shrink:0;
+}
+
+/* أوراق خصم فوق - أفقية كبيرة */
+.opp-cards-h{
+  display:flex;
+  justify-content:center;
+}
+.opp-cb-h{
+  width:min(9vw,48px);
+  height:min(13vw,68px);
+  background:linear-gradient(145deg,#1a0800,#3a1a05);
+  border:1.5px solid rgba(200,150,12,.4);
+  border-radius:6px;
+  box-shadow:1px 2px 6px rgba(0,0,0,.5);
+  margin:-10px;
+  background-image:
+    repeating-linear-gradient(45deg,transparent,transparent 4px,rgba(255,255,255,.04) 4px,rgba(255,255,255,.04) 5px),
+    linear-gradient(145deg,#2a1005,#4a2010);
+  position:relative;
+}
+.opp-cb-h::after{
+  content:'';position:absolute;inset:3px;
+  border:1px solid rgba(200,150,12,.2);border-radius:3px;
+}
+
+/* --- لاعب يمين/يسار --- */
+.opp-side{
+  position:absolute;top:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:15;gap:4px;
+  transform:translateY(-50%);
+}
+.opp-side.right{right:2px;}
+.opp-side.left{left:2px;}
+
+/* أوراق خصم جانب - عمودية كبيرة */
+.opp-cards-v{
+  display:flex;flex-direction:column;
+  align-items:center;
+}
+.opp-cb-v{
+  width:min(13vw,68px);
+  height:min(9vw,48px);
+  background:linear-gradient(145deg,#1a0800,#3a1a05);
+  border:1.5px solid rgba(200,150,12,.4);
+  border-radius:6px;
+  box-shadow:1px 2px 6px rgba(0,0,0,.5);
+  margin:-10px 0;
+  background-image:
+    repeating-linear-gradient(45deg,transparent,transparent 4px,rgba(255,255,255,.04) 4px,rgba(255,255,255,.04) 5px),
+    linear-gradient(145deg,#2a1005,#4a2010);
+  position:relative;
+}
+.opp-cb-v::after{
+  content:'';position:absolute;inset:3px;
+  border:1px solid rgba(200,150,12,.2);border-radius:3px;
+}
+
+/* --- أنا تحت --- */
 .me-zone{
   position:absolute;bottom:0;left:0;right:0;
   display:flex;flex-direction:column;align-items:center;
-  z-index:15;padding-bottom:4px;
+  z-index:15;padding-bottom:6px;
 }
-.me-info{
+.me-bar{
   display:flex;align-items:center;gap:.5rem;
-  background:rgba(0,0,0,.6);
-  border:1px solid rgba(240,192,64,.25);
-  border-radius:10px;padding:3px 10px 3px 8px;
-  margin-bottom:4px;
+  background:rgba(255,255,255,.25);
+  border:1px solid rgba(255,255,255,.4);
+  border-radius:50px;
+  padding:4px 12px 4px 8px;
+  margin-bottom:5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
-.me-info.my-turn{border-color:var(--gold);box-shadow:0 0 12px rgba(240,192,64,.3)}
+.me-bar.my-turn{
+  background:rgba(240,192,64,.3);
+  border-color:var(--gold);
+  box-shadow:0 0 12px rgba(240,192,64,.35);
+}
 .me-av{
-  width:30px;height:30px;border-radius:50%;
+  width:32px;height:32px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-weight:900;font-size:.85rem;
-  background:linear-gradient(135deg,#8B4513,#c8960c);
-  flex-shrink:0;
+  font-size:.9rem;font-weight:900;color:#fff;flex-shrink:0;
 }
-.me-name{font-size:.78rem;font-weight:700;color:#fff}
-.me-count{font-size:.65rem;color:rgba(240,192,64,.7);margin-right:.3rem}
+.me-name{font-size:.8rem;font-weight:700;color:#3a1a00}
+.me-cnt{font-size:.65rem;color:rgba(58,26,0,.6)}
 .pass-btn{
-  background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.35);
-  color:rgba(240,192,64,.85);border-radius:7px;
-  padding:.28rem .7rem;cursor:pointer;
+  background:rgba(240,192,64,.2);
+  border:1.5px solid rgba(200,130,10,.5);
+  color:#5a3000;border-radius:20px;
+  padding:.28rem .8rem;cursor:pointer;
   font-family:'Tajawal',sans-serif;font-size:.72rem;font-weight:700;
-  transition:.2s;margin-right:.5rem;
+  transition:.2s;
 }
-.pass-btn:disabled{opacity:.2;cursor:default;border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.3)}
-.pass-btn:not(:disabled):hover{background:rgba(240,192,64,.2)}
+.pass-btn:disabled{opacity:.25;cursor:default}
+.pass-btn:not(:disabled):hover{background:rgba(240,192,64,.4)}
+
+/* أوراق يدي - كبيرة مثل الصورة */
 .my-cards{
-  display:flex;gap:3px;overflow-x:auto;
-  padding:4px 8px 6px;max-width:100vw;
+  display:flex;gap:4px;overflow-x:auto;
+  padding:4px 10px 6px;max-width:100vw;
   scrollbar-width:none;
 }
 .my-cards::-webkit-scrollbar{display:none}
 
-/* ورقة يدي */
+/* الورقة - بحجم كبير */
 .hc{
   flex-shrink:0;
-  width:var(--card-w);height:var(--card-h);
+  width:min(15vw,78px);
+  height:min(22vw,112px);
   background:linear-gradient(145deg,#fffef5,#eeecda);
-  border-radius:7px;
+  border-radius:8px;
   display:flex;flex-direction:column;justify-content:space-between;
-  padding:4px 5px;
-  box-shadow:0 4px 14px rgba(0,0,0,.6);
+  padding:5px 6px;
+  box-shadow:0 5px 16px rgba(0,0,0,.5);
   cursor:not-allowed;transition:.15s;
   color:#1a1a1a;position:relative;
 }
 .hc.r{color:#cc0000}
 .hc.ok{
   cursor:pointer;
-  box-shadow:0 0 0 2.5px var(--gold),0 -10px 0 rgba(240,192,64,.15),0 6px 18px rgba(0,0,0,.5);
-  transform:translateY(-12px);
+  box-shadow:0 0 0 3px var(--gold),0 8px 20px rgba(0,0,0,.4);
+  transform:translateY(-14px);
 }
-.hc.ok:hover{transform:translateY(-17px);}
-.hc .hcor{font-size:.72rem;font-weight:900;line-height:1.1}
-.hc .hctr{font-size:1.5rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-
-/* اللاعب - فوق */
-.opp-top{
-  position:absolute;top:0;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;
-  z-index:15;padding-top:4px;
+.hc.ok:hover{transform:translateY(-20px)}
+.hc .hcor{font-size:.82rem;font-weight:900;line-height:1.1}
+.hc .hctr{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:min(5vw,26px);
+  pointer-events:none;
 }
-/* اللاعب - يمين */
-.opp-right{
-  position:absolute;right:0;top:50%;transform:translateY(-55%);
-  display:flex;flex-direction:column;align-items:center;
-  z-index:15;padding-right:4px;
-}
-/* اللاعب - يسار */
-.opp-left{
-  position:absolute;left:0;top:50%;transform:translateY(-55%);
-  display:flex;flex-direction:column;align-items:center;
-  z-index:15;padding-left:4px;
+/* صورة الوجه في الورقة */
+.hc .face{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:min(7vw,36px);
+  pointer-events:none;
+  line-height:1;
 }
 
-.opp-info{
-  background:rgba(0,0,0,.65);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:9px;padding:3px 9px 3px 7px;
-  display:flex;align-items:center;gap:5px;
-  font-size:.72rem;font-weight:700;white-space:nowrap;
-  margin:3px 0;
-}
-.opp-info.turn{border-color:var(--gold);box-shadow:0 0 10px rgba(240,192,64,.3);color:var(--gold)}
-.opp-info.out{opacity:.35}
-.opp-av{
-  width:26px;height:26px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.75rem;font-weight:900;flex-shrink:0;
-}
-
-/* أوراق الخصم المقلوبة */
-.opp-backs{display:flex;justify-content:center}
-.opp-backs.horiz .cb{
-  width:34px;height:48px;
-  background:linear-gradient(145deg,#1a0800,#3a1a05);
-  border:1px solid rgba(200,150,12,.35);
-  border-radius:5px;box-shadow:1px 1px 5px rgba(0,0,0,.5);
-  margin:-7px;
-  /* نقوش ظهر الورقة */
-  background-image:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(255,255,255,.04) 3px,rgba(255,255,255,.04) 4px);
-}
-.opp-backs.vert .cb{
-  width:48px;height:34px;
-  background:linear-gradient(145deg,#1a0800,#3a1a05);
-  border:1px solid rgba(200,150,12,.35);
-  border-radius:5px;box-shadow:1px 1px 5px rgba(0,0,0,.5);
-  margin:-9px 0;
-  background-image:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(255,255,255,.04) 3px,rgba(255,255,255,.04) 4px);
-}
-
-/* Turn indicator in center */
-.turn-label{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,min(14vw,60px));
+/* Turn label */
+.turn-lbl{
+  position:absolute;bottom:6px;left:50%;transform:translateX(-50%);
   z-index:6;
-  background:rgba(240,192,64,.92);
-  color:#1a0800;font-weight:900;font-size:.78rem;
-  padding:.28rem .9rem;border-radius:20px;
+  font-weight:900;font-size:.75rem;
+  padding:.25rem .8rem;border-radius:20px;
   white-space:nowrap;pointer-events:none;
-  box-shadow:0 2px 10px rgba(0,0,0,.4);
 }
-.turn-label.opp{background:rgba(0,0,0,.7);color:rgba(255,255,255,.75);}
+.turn-lbl.me{background:rgba(240,192,64,.9);color:#1a0800}
+.turn-lbl.opp-t{background:rgba(0,0,0,.55);color:rgba(255,255,255,.8)}
 
 /* ======= GAME OVER ======= */
 #gameover{
   position:fixed;inset:0;display:none;
   align-items:center;justify-content:center;
-  background:rgba(0,0,0,.82);backdrop-filter:blur(6px);
-  z-index:300;
+  background:rgba(0,0,0,.82);backdrop-filter:blur(6px);z-index:300;
 }
 .go-box{
   background:linear-gradient(145deg,#2a1204,#1a0900);
-  border:3px solid var(--gold2);
-  border-radius:22px;padding:2rem 1.8rem;
-  text-align:center;max-width:310px;width:88%;
-  box-shadow:0 20px 60px rgba(0,0,0,.7);
+  border:3px solid var(--gold2);border-radius:22px;
+  padding:2rem 1.8rem;text-align:center;max-width:310px;width:88%;
 }
 .go-icon{font-size:3.5rem;margin-bottom:.4rem}
 .go-title{font-size:1.7rem;font-weight:900;color:var(--gold);margin-bottom:.4rem}
 .go-loser{font-size:1rem;color:#ff9999;margin-bottom:.3rem}
 .go-sub{font-size:.8rem;color:rgba(255,255,255,.35);margin-bottom:1.3rem}
-.go-btn{width:100%;padding:.82rem;border:none;border-radius:11px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.5rem;transition:.2s}
+.go-btn{width:100%;padding:.82rem;border:none;border-radius:11px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.5rem}
 .go-btn.gold{background:linear-gradient(135deg,#f0c040,#c8960c);color:#1a0800}
 .go-btn.out{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.55)}
 
-/* ======= BOARD DETAIL POPUP ======= */
-#boardpop{
-  position:fixed;inset:0;display:none;
-  align-items:center;justify-content:center;
-  background:rgba(0,0,0,.75);z-index:250;
-}
-.boardpop-inner{
-  background:linear-gradient(145deg,#1e0e04,#130900);
-  border:2px solid rgba(240,192,64,.3);
-  border-radius:18px;padding:.9rem;
-  max-width:340px;width:92%;
-}
+/* Board Popup */
+#boardpop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.75);z-index:250;}
+.bp-inner{background:linear-gradient(145deg,#1e0e04,#130900);border:2px solid rgba(240,192,64,.3);border-radius:18px;padding:.9rem;max-width:340px;width:92%;}
 .bp-title{text-align:center;color:var(--gold);font-weight:700;font-size:.85rem;margin-bottom:.7rem}
 .bp-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
 .bp-col{background:rgba(0,0,0,.35);border-radius:9px;padding:.5rem}
 .bp-head{font-size:1rem;font-weight:900;margin-bottom:3px}
 .bp-head.r{color:#cc0000}
 .bp-cards{display:flex;flex-wrap:wrap;gap:2px}
-.bpc{
-  width:22px;height:32px;
-  background:linear-gradient(145deg,#fffef5,#eeecda);
-  border-radius:3px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  font-size:.48rem;font-weight:900;color:#1a1a1a;
-  box-shadow:0 1px 3px rgba(0,0,0,.4);
-}
+.bpc{width:26px;height:38px;background:linear-gradient(145deg,#fffef5,#eeecda);border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.55rem;font-weight:900;color:#1a1a1a;box-shadow:0 1px 3px rgba(0,0,0,.4);}
 .bpc.r{color:#cc0000}
 .bpc.sv{background:linear-gradient(145deg,#ffd700,#ffa500);box-shadow:0 0 5px rgba(255,200,0,.5)}
 .bp-close{width:100%;margin-top:.7rem;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.25);color:rgba(240,192,64,.75);border-radius:8px;padding:.45rem;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.8rem}
 
-/* Toast */
-.toast{position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.92);border:1px solid rgba(240,192,64,.35);border-radius:11px;padding:.55rem 1.1rem;font-size:.85rem;z-index:999;animation:fout 3s forwards;pointer-events:none;white-space:nowrap;}
+.toast{position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.92);border:1px solid rgba(240,192,64,.35);border-radius:11px;padding:.55rem 1.1rem;font-size:.85rem;z-index:999;animation:fout 3s forwards;pointer-events:none;white-space:nowrap;color:#f0c040;}
 @keyframes fout{0%,65%{opacity:1}100%{opacity:0}}
 </style>
 </head>
 <body>
 
-<!-- ======= LOBBY ======= -->
+<!-- LOBBY -->
 <div id="lobby">
   <div class="lobby-box">
     <div class="lobby-title">سبعة الديمن</div>
@@ -436,12 +463,12 @@ html,body{width:100%;height:100%;font-family:'Tajawal',sans-serif;overflow:hidde
   </div>
 </div>
 
-<!-- ======= WAITING ======= -->
+<!-- WAITING -->
 <div id="waiting">
   <div class="w-code-label">كود الغرفة</div>
   <div class="w-code" id="wcode">------</div>
   <button class="w-copybtn" onclick="copyCode()">📋 انسخ الكود</button>
-  <div class="w-players" id="wplayers-box">
+  <div class="w-players">
     <div style="color:var(--gold);font-weight:700;margin-bottom:.7rem;font-size:.9rem">🎮 اللاعبون</div>
     <div id="wplayers"></div>
   </div>
@@ -449,72 +476,71 @@ html,body{width:100%;height:100%;font-family:'Tajawal',sans-serif;overflow:hidde
   <div class="w-msg" id="wmsg">في انتظار المضيف...</div>
 </div>
 
-<!-- ======= GAME ======= -->
+<!-- GAME -->
 <div id="game">
-  <div class="table-frame"></div>
   <div class="topbar">
     <div class="topbar-title">🃏 سبعة الديمن</div>
     <div class="topbar-room" id="toproom"></div>
   </div>
 
   <!-- السجادة -->
-  <div class="carpet"><div class="carpet-inner"><div class="carpet-pattern"></div></div></div>
+  <div class="carpet"><div class="carpet-bg"><div class="carpet-overlay"></div></div></div>
 
-  <!-- البورد فوق السجادة -->
-  <div class="board-grid" id="board-grid" onclick="openBoardPop()" style="cursor:pointer"></div>
+  <!-- البورد - 4 أوراق طولية فوق السجادة -->
+  <div class="board-area" id="board-area" onclick="openBoardPop()" style="cursor:pointer"></div>
 
-  <!-- Turn label -->
-  <div class="turn-label" id="turnlbl">⏳</div>
+  <!-- Turn -->
+  <div class="turn-lbl" id="turnlbl">⏳</div>
 
-  <!-- لاعب فوق -->
+  <!-- فوق -->
   <div class="opp-top" id="opp-top" style="display:none">
     <div class="opp-info" id="oinfo-top">
       <div class="opp-av" id="oav-top">?</div>
       <span id="oname-top">-</span>
     </div>
-    <div class="opp-backs horiz" id="ohand-top"></div>
+    <div class="opp-cards-h" id="ohand-top"></div>
   </div>
 
-  <!-- لاعب يمين -->
-  <div class="opp-right" id="opp-right" style="display:none">
-    <div class="opp-backs vert" id="ohand-right"></div>
+  <!-- يمين -->
+  <div class="opp-side right" id="opp-right" style="display:none">
     <div class="opp-info" id="oinfo-right">
       <div class="opp-av" id="oav-right">?</div>
       <span id="oname-right">-</span>
     </div>
+    <div class="opp-cards-v" id="ohand-right"></div>
   </div>
 
-  <!-- لاعب يسار -->
-  <div class="opp-left" id="opp-left" style="display:none">
-    <div class="opp-backs vert" id="ohand-left"></div>
+  <!-- يسار -->
+  <div class="opp-side left" id="opp-left" style="display:none">
     <div class="opp-info" id="oinfo-left">
       <div class="opp-av" id="oav-left">?</div>
       <span id="oname-left">-</span>
     </div>
+    <div class="opp-cards-v" id="ohand-left"></div>
   </div>
 
   <!-- أنا تحت -->
   <div class="me-zone">
-    <div class="me-info" id="me-info">
+    <div class="me-bar" id="me-bar">
       <div class="me-av" id="me-av">أ</div>
       <span class="me-name" id="me-name">-</span>
-      <span class="me-count">(<span id="mycount">0</span>)</span>
-      <button class="pass-btn" id="passbtn" onclick="sendPass()" disabled>تمرير</button>
+      <span class="me-cnt">(<span id="mycount">0</span>)</span>
+      <button class="pass-btn" id="passbtn" onclick="sendPass()" disabled>تمرير ↩</button>
     </div>
     <div class="my-cards" id="myhand"></div>
   </div>
 </div>
 
-<!-- ======= BOARD POPUP ======= -->
+<!-- BOARD POPUP -->
 <div id="boardpop" onclick="closeBoardPop()">
-  <div class="boardpop-inner" onclick="event.stopPropagation()">
+  <div class="bp-inner" onclick="event.stopPropagation()">
     <div class="bp-title">📋 حالة الكبب</div>
     <div class="bp-grid" id="bp-grid"></div>
     <button class="bp-close" onclick="closeBoardPop()">إغلاق</button>
   </div>
 </div>
 
-<!-- ======= GAME OVER ======= -->
+<!-- GAME OVER -->
 <div id="gameover">
   <div class="go-box">
     <div class="go-icon">😂</div>
@@ -527,11 +553,81 @@ html,body{width:100%;height:100%;font-family:'Tajawal',sans-serif;overflow:hidde
 </div>
 
 <script>
-const VALS={11:'J',12:'Q',13:'K',14:'A'};
+// ===== صور الوجوه للـ J Q K A =====
+const FACE_EMOJI = {
+  // J = ولد
+  '♠J':'🤴','♥J':'🤴','♦J':'🤴','♣J':'🤴',
+  // Q = بنت
+  '♠Q':'👸','♥Q':'👸','♦Q':'👸','♣Q':'👸',
+  // K = شايب/ملك
+  '♠K':'👑','♥K':'👑','♦K':'👑','♣K':'👑',
+  // A = آكه
+  '♠A':'🅰','♥A':'🅰','♦A':'🅰','♣A':'🅰',
+};
+
+const FACE_CHARS = {11:'J',12:'Q',13:'K',14:'A'};
 const RED={'♥':1,'♦':1};
-const OPP_COLORS=['#e74c8b','#3498db','#e67e22'];
+const OPP_COLORS=['#e74c8b','#3498db','#e67e22','#9b59b6'];
 const WS_URL=location.protocol==='https:'?`wss://${location.host}`:`ws://${location.host}`;
 let ws,myId,myRoomId,isHost=false,myName='',lastState=null;
+
+function vd(v){ return FACE_CHARS[v]||String(v); }
+function faceEmoji(suit,val){
+  const k = suit + vd(val);
+  return FACE_EMOJI[k]||null;
+}
+
+/* صورة ورقة البلوت SVG مبسطة */
+function makeFaceHTML(suit, val, isRed){
+  const label = vd(val);
+  const emoji = faceEmoji(suit,val);
+  if(emoji && (val>=11)){
+    // J Q K A - بصورة
+    return `
+      <div class="corner" style="color:${isRed?'#cc0000':'#1a1a1a'}">
+        <div>${label}</div><div>${suit}</div>
+      </div>
+      <div class="face" style="color:${isRed?'#cc0000':'#1a1a1a'}">${emoji}</div>
+      <div class="corner" style="transform:rotate(180deg);color:${isRed?'#cc0000':'#1a1a1a'}">
+        <div>${label}</div><div>${suit}</div>
+      </div>`;
+  }
+  // أرقام عادية
+  const suitGrid = makeSuitGrid(suit, val, isRed);
+  return `
+    <div class="hcor"><div>${label}</div><div>${suit}</div></div>
+    <div class="hctr" style="color:${isRed?'#cc0000':'#1a1a1a'}">${suitGrid}</div>
+    <div class="hcor" style="transform:rotate(180deg)"><div>${label}</div><div>${suit}</div></div>`;
+}
+
+function makeBoardCardHTML(suit, val, isRed){
+  const label = vd(val);
+  const emoji = faceEmoji(suit,val);
+  if(emoji && val>=11){
+    return `
+      <div class="corner" style="font-size:.7rem;font-weight:900;line-height:1.1;color:${isRed?'#cc0000':'#1a1a1a'}">
+        <div>${label}</div><div>${suit}</div>
+      </div>
+      <div class="face-img" style="color:${isRed?'#cc0000':'#1a1a1a'}">${emoji}</div>
+      <div class="corner" style="font-size:.7rem;font-weight:900;line-height:1.1;transform:rotate(180deg);color:${isRed?'#cc0000':'#1a1a1a'}">
+        <div>${label}</div><div>${suit}</div>
+      </div>`;
+  }
+  return `
+    <div class="corner" style="font-size:.7rem;font-weight:900;line-height:1.1;color:${isRed?'#cc0000':'#1a1a1a'}">
+      <div>${label}</div><div>${suit}</div>
+    </div>
+    <div class="mid" style="color:${isRed?'#cc0000':'#1a1a1a'}">${suit}</div>
+    <div class="corner" style="font-size:.7rem;font-weight:900;line-height:1.1;transform:rotate(180deg);color:${isRed?'#cc0000':'#1a1a1a'}">
+      <div>${label}</div><div>${suit}</div>
+    </div>`;
+}
+
+// رسم رموز الكبة للأرقام
+function makeSuitGrid(suit,val,isRed){
+  // نرجع فقط رمز الكبة بحجم مناسب
+  return `<span style="color:${isRed?'#cc0000':'#1a1a1a'};font-size:1.4rem">${suit}</span>`;
+}
 
 /* ---- connection ---- */
 function connect(cb){
@@ -560,11 +656,9 @@ function copyCode(){navigator.clipboard.writeText(myRoomId);toast('تم النس
 function showErr(m){const e=document.getElementById('lerr');e.textContent=m;e.style.display='block';setTimeout(()=>e.style.display='none',3500);}
 function toast(msg,color='#f0c040'){
   const t=document.createElement('div');t.className='toast';t.textContent=msg;
-  t.style.color=color;t.style.borderColor=color+'55';
-  document.body.appendChild(t);setTimeout(()=>t.remove(),3100);
+  t.style.color=color;document.body.appendChild(t);setTimeout(()=>t.remove(),3100);
 }
 
-/* ---- handle messages ---- */
 function handle(msg){
   if(msg.type==='room_created'){
     myId=msg.playerId;myRoomId=msg.roomId;isHost=true;
@@ -587,6 +681,7 @@ function handle(msg){
     document.getElementById('gameover').style.display='none';
     document.getElementById('toproom').textContent='غرفة: '+myRoomId;
     document.getElementById('me-av').textContent=myName[0];
+    document.getElementById('me-av').style.background=`linear-gradient(135deg,#8B4513,#c8960c)`;
     document.getElementById('me-name').textContent=myName;
   }
   else if(msg.type==='game_state'){lastState=msg;renderGame(msg);}
@@ -594,7 +689,6 @@ function handle(msg){
   else if(msg.type==='error'){toast('⚠️ '+msg.msg,'#f99');}
 }
 
-/* ---- waiting room ---- */
 function renderWaiting(players){
   const el=document.getElementById('wplayers');el.innerHTML='';
   for(let i=0;i<4;i++){
@@ -607,9 +701,6 @@ function renderWaiting(players){
     el.appendChild(d);
   }
 }
-
-/* ---- helpers ---- */
-function vd(v){return VALS[v]||v;}
 
 function getPositions(players){
   const mi=players.findIndex(p=>p.id===myId);
@@ -631,55 +722,54 @@ function renderOpp(side,player,allPlayers,curId){
   if(!player){wrap.style.display='none';return;}
   wrap.style.display='flex';
   const idx=allPlayers.findIndex(p=>p.id===player.id);
-  av.style.background=`linear-gradient(135deg,${OPP_COLORS[idx%3]},${OPP_COLORS[(idx+1)%3]})`;
+  av.style.background=`linear-gradient(135deg,${OPP_COLORS[idx%4]},${OPP_COLORS[(idx+1)%4]})`;
   av.textContent=player.name[0];
   nm.textContent=player.name+(player.isOut?' ✅':'');
   info.className='opp-info'+(player.id===curId?' turn':'')+(player.isOut?' out':'');
-  const isV=(side==='left'||side==='right');
-  hand.className='opp-backs '+(isV?'vert':'horiz');
-  const n=Math.min(player.cardCount,10);
-  hand.innerHTML=Array(n).fill('<div class="cb"></div>').join('');
+  const n=Math.min(player.cardCount,8);
+  const isH=(side==='top');
+  hand.innerHTML=Array(n).fill(`<div class="${isH?'opp-cb-h':'opp-cb-v'}"></div>`).join('');
 }
 
-/* ---- render game ---- */
 function renderGame(s){
   const pos=getPositions(s.players);
   renderOpp('top',pos.top,s.players,s.currentPlayerId);
   renderOpp('right',pos.right,s.players,s.currentPlayerId);
   renderOpp('left',pos.left,s.players,s.currentPlayerId);
 
-  const me=s.players.find(p=>p.id===myId);
-  const mi=document.getElementById('me-info');
-  mi.className='me-info'+(s.currentPlayerId===myId?' my-turn':'');
+  document.getElementById('me-bar').className='me-bar'+(s.currentPlayerId===myId?' my-turn':'');
 
-  // البورد - أوراق فوق السجادة
-  const bg=document.getElementById('board-grid');bg.innerHTML='';
+  // البورد - 4 أوراق طولية
+  const ba=document.getElementById('board-area');ba.innerHTML='';
   ['♠','♥','♦','♣'].forEach(suit=>{
     const b=s.board[suit];const isR=RED[suit];
-    const pile=document.createElement('div');pile.className='b-pile';
+    const wrap=document.createElement('div');wrap.className='bc-wrap';
     if(!b){
-      pile.innerHTML=`<div class="b-card empty">
-        <div class="bc" style="color:rgba(255,255,255,.15)">${suit}</div>
-        <div class="bm" style="color:rgba(255,255,255,.1);font-size:.9rem">${suit}</div>
+      wrap.innerHTML=`<div class="bc empty-slot">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,.15);font-size:1.5rem">${suit}</div>
       </div>`;
     } else {
-      const sv=b.high===7;
-      pile.innerHTML=`<div class="b-card${isR?' r':''}${sv?' seven':''}">
-        <div class="bc">${vd(b.high)}<br>${suit}</div>
-        <div class="bm">${suit}</div>
-        <div class="bc" style="transform:rotate(180deg)">${vd(b.high)}<br>${suit}</div>
-      </div>
-      <div class="b-range">${vd(b.low===7?7:7)}—${vd(b.high)}</div>`;
+      const sv=b.high===7&&b.low===7;
+      const card=document.createElement('div');
+      card.className='bc white-card'+(isR?' r':'')+(sv?' seven':'');
+      card.innerHTML=makeBoardCardHTML(suit,b.high,isR);
+      const range=document.createElement('div');
+      range.className='bc-range';
+      range.textContent='7 — '+vd(b.high);
+      wrap.appendChild(card);
+      wrap.appendChild(range);
+      ba.appendChild(wrap);
+      return;
     }
-    bg.appendChild(pile);
+    ba.appendChild(wrap);
   });
 
-  // Turn label
+  // Turn
   const cur=s.players.find(p=>p.id===s.currentPlayerId);
   const tl=document.getElementById('turnlbl');
   if(cur){
-    if(cur.id===myId){tl.textContent='⭐ دورك!';tl.className='turn-label';}
-    else{tl.textContent='⏳ دور '+cur.name;tl.className='turn-label opp';}
+    if(cur.id===myId){tl.textContent='⭐ دورك أنت!';tl.className='turn-lbl me';}
+    else{tl.textContent='⏳ دور '+cur.name;tl.className='turn-lbl opp-t';}
   }
 
   // يدي
@@ -694,20 +784,16 @@ function renderGame(s){
     const isR=RED[card.suit];
     const el=document.createElement('div');
     el.className='hc'+(isR?' r':'')+(valid?' ok':'');
-    el.innerHTML=`<div class="hcor"><div>${vd(card.value)}</div><div>${card.suit}</div></div>
-      <div class="hctr">${card.suit}</div>
-      <div class="hcor" style="transform:rotate(180deg)"><div>${vd(card.value)}</div><div>${card.suit}</div></div>`;
+    el.innerHTML=makeFaceHTML(card.suit,card.value,isR);
     if(valid) el.onclick=()=>ws.send(JSON.stringify({type:'play_card',card}));
     hand.appendChild(el);
   });
   document.getElementById('mycount').textContent=s.myHand.length;
 
-  // Pass btn
   const pb=document.getElementById('passbtn');
-  if(isMyTurn&&s.validMoves.length===0){pb.disabled=false;pb.style.color='var(--gold)';pb.style.borderColor='rgba(240,192,64,.5)';}
-  else{pb.disabled=true;pb.style.color='';pb.style.borderColor='';}
+  if(isMyTurn&&s.validMoves.length===0){pb.disabled=false;pb.style.opacity='1';}
+  else{pb.disabled=true;pb.style.opacity='.25';}
 
-  // Game over
   if(s.gameOver){
     document.getElementById('goloser').textContent='الخاسر: '+s.loser+' 😭';
     document.getElementById('gameover').style.display='flex';
@@ -715,7 +801,6 @@ function renderGame(s){
   }
 }
 
-/* ---- board popup ---- */
 function openBoardPop(){
   if(!lastState) return;
   const g=document.getElementById('bp-grid');g.innerHTML='';
@@ -737,7 +822,6 @@ function openBoardPop(){
 }
 function closeBoardPop(){document.getElementById('boardpop').style.display='none';}
 
-/* ---- input events ---- */
 document.getElementById('rcode').addEventListener('input',e=>e.target.value=e.target.value.toUpperCase());
 document.getElementById('pname').addEventListener('keyup',e=>{if(e.key==='Enter') document.getElementById('rcode').focus();});
 document.getElementById('rcode').addEventListener('keyup',e=>{if(e.key==='Enter') joinRoom();});
